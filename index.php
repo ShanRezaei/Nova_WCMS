@@ -1,3 +1,15 @@
+<?php
+// to start our session and include all classes
+include "head.inc.php";
+$_SESSION['page'] = "index";
+//$DbMngpost = new DbManager();
+
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
