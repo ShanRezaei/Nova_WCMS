@@ -4,7 +4,16 @@ include "head.inc.php";
 //$DbMngpost = new DbManager();
 
 ?>
-
+<?php
+if (isset( $_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
+    //unset($_SESSION['this_user_login_new']);
+    if($_SESSION["accesor_level"]== "Admin"){
+        $showr = "none";
+        $showw = "block";
+    }
+    
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,36 +41,57 @@ include "head.inc.php";
                                     <h3 class="text-center font-weight-light my-4">Create Account</h3>
                                 </div>
                                 <div class="card-body">
-                                    <form>
+
+
+                                <div class="alert alert-warning" role="alert" style="display:<?php echo isset($showr) ? $showr : "block"; ?>">
+                                log in as Admin to do registration!
+                                <!-- <div class="small"><a href="index.php">Back to the main page!</a></div> -->
+                                </div>
+
+
+
+
+                                    <form  action="controller/controll.php" method="post" style="display:<?php echo isset($showw) ? $showw : "none"; ?>">
+                                         <!-- hidden input -->
+                                         <input type="hidden" name="action" value="register">
+
                                         <div class="row mb-3">
                                             <div class="col-md-6">
                                                 <div class="form-floating mb-3 mb-md-0">
-                                                    <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" />
+                                                    <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" name="fname"/>
                                                     <label for="inputFirstName">First name</label>
+                                                    <span style="color:chocolate"><?php echo isset($_SESSION['myfirsterror']) ? $_SESSION['myfirsterror'] : ""; ?></span>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-floating">
-                                                    <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" />
+                                                    <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" name="lname"/>
                                                     <label for="inputLastName">Last name</label>
+                                                    <!-- error text to show -->
+                                                   <span style="color:chocolate"><?php echo isset($_SESSION['mylasterror']) ? $_SESSION['mylasterror'] : ""; ?></span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
+                                            <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" name="email" />
                                             <label for="inputEmail">Email address</label>
+                                            <span style="color:chocolate"><?php echo isset($_SESSION['myemailerror']) ? $_SESSION['myemailerror'] : ""; ?></span>
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col-md-6">
                                                 <div class="form-floating mb-3 mb-md-0">
-                                                    <input class="form-control" id="inputPassword" type="password" placeholder="Create a password" />
+                                                    <input class="form-control" id="inputPassword" type="password" placeholder="Create a password" name="password" />
                                                     <label for="inputPassword">Password</label>
+                                                    <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['mypasserror']) ? $_SESSION['mypasserror'] : ""; ?></span>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-floating mb-3 mb-md-0">
-                                                    <input class="form-control" id="inputPasswordConfirm" type="password" placeholder="Confirm password" />
+                                                    <input class="form-control" id="inputPasswordConfirm" type="password" placeholder="Confirm password" name="cpass"/>
                                                     <label for="inputPasswordConfirm">Confirm Password</label>
+                                                    <span style="color:chocolate"><?php echo isset($_SESSION['mycpasserror']) ? $_SESSION['mycpasserror'] : ""; ?></span>
+                                <span style="color:chocolate"><?php echo isset($_SESSION['mycerror']) ? $_SESSION['mycerror'] : ""; ?></span>
                                                 </div>
                                             </div>
 
@@ -69,6 +99,7 @@ include "head.inc.php";
                                             <div class="col-md-6" style="margin-top: 3%;">
                                                 <div class="form-check mb-3">
                                                     <label class="form-check-label" for="inputRememberPassword">Access Level:</label>
+                                                    <div><span id="radiospan" style="color:chocolate"><?php echo isset($_SESSION['mylevelerror']) ? $_SESSION['mylevelerror'] : ""; ?></span></div>
 
                                                 </div>
                                             </div>
@@ -92,12 +123,13 @@ include "head.inc.php";
 
                                             </div>
                                             <div class="mt-4 mb-0">
-                                                <div class="d-grid"><a class="btn btn-primary btn-block" href="login.php">Create Account</a></div>
+                                            
+                                                <div class="d-grid"><input type="submit" value="Create Account" name="submit2" class="btn btn-success mystyle2" /></div>
                                             </div>
                                     </form>
                                 </div>
                                 <div class="card-footer text-center py-3">
-                                    <div class="small"><a href="login.php">Have an account? Go to login</a></div>
+                                    <div class="small"><a href="index.php">Back to the main page.</a></div>
                                 </div>
                             </div>
                         </div>

@@ -5,7 +5,16 @@ include "head.inc.php";
 
 ?>
 
-
+<?php
+if (isset( $_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
+    //unset($_SESSION['this_user_login_new']);
+    
+        $shows = "none";
+        $showl = "block";
+   
+    
+}
+?>
 
 
 <!DOCTYPE html>
@@ -30,13 +39,27 @@ include "head.inc.php";
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
                                     <div class="card-body">
-                                        <form>
+
+                                    <div class="alert alert-warning" role="alert" style="display:<?php echo isset($showl) ? $showl : "none"; ?>">
+                                you have loged in already!
+                                <div class="small"><a href="index.php">Back to the main page!</a></div>
+                            </div>
+
+
+
+
+
+
+                                        <form action="controller/controll.php" method="post" style="display:<?php echo isset($shows) ? $shows : "block"; ?>">
+
+                                               <!-- hidden input -->
+                                                 <input type="hidden" name="action" value="loginuser">
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
+                                                <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" name="useremail" />
                                                 <label for="inputEmail">Email address</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputPassword" type="password" placeholder="Password" />
+                                                <input class="form-control" id="inputPassword" type="password" placeholder="Password" name="userpass"/>
                                                 <label for="inputPassword">Password</label>
                                             </div>
                                             <!-- <div class="form-check mb-3">
@@ -45,12 +68,12 @@ include "head.inc.php";
                                             </div> -->
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                                 <!-- <a class="small" href="password.php">Forgot Password?</a> -->
-                                                <a class="btn btn-primary" href="index.php">Login</a>
+                                                <input type="submit" name="login" value="Log in" class="form-control btn btn-success">
                                             </div>
                                         </form>
                                     </div>
                                     <div class="card-footer text-center py-3">
-                                        <div class="small"><a href="register.php">Need an account? Sign up!</a></div>
+                                        <div class="small"><a href="index.php">Back to the main page!</a></div>
                                     </div>
                                 </div>
                             </div>
