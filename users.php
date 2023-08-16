@@ -54,9 +54,10 @@ if (isset( $_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                                                     <th>ID</th>
                                                     <th>Firstname</th>
                                                     <th>Lastname</th>
-                                                    <th>email</th>
-                                                    <th>access</th>
-                                                    <th>status</th>
+                                                    <th>Email</th>
+                                                    <th>Access</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -88,7 +89,7 @@ if (isset( $_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
                                     </div>
                                     <div class="card-footer text-center py-3">
-                                        <div class="small"><a href="index.php">Back to the main page!</a></div>
+                                        <div class="small"><a href="Dashboard.php">Back to the main page!</a></div>
                                     </div>
                                 </div>
                             </div>

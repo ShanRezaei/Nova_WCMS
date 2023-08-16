@@ -265,7 +265,7 @@ switch ($action) {
                         $_SESSION["login-access"]="1";
 
                         echo "<script>alert('Welcome on board!');</script>";
-                        echo "<script>window.location.href='../index.php';</script>";
+                        echo "<script>window.location.href='../Dashboard.php';</script>";
 
                     }else{
 
@@ -301,7 +301,7 @@ switch ($action) {
 
         $_SESSION["login-access"]="0";
         $_SESSION["accesor_level"]="";
-        echo "<script>window.location.href='../index.php';</script>";
+        echo "<script>window.location.href='../Dashboard.php';</script>";
 
 
         break;

@@ -129,7 +129,7 @@ if (isset( $_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                                     </form>
                                 </div>
                                 <div class="card-footer text-center py-3">
-                                    <div class="small"><a href="index.php">Back to the main page.</a></div>
+                                    <div class="small"><a href="Dashboard.php">Back to the main page.</a></div>
                                 </div>
                             </div>
                         </div>
