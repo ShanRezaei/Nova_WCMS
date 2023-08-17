@@ -1,3 +1,12 @@
+<?php
+// to start our session and include all classes
+include "../head.inc.php";
+$DbMngp = new PortfolioManager();
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,7 +64,7 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-        <li><a href="index.php" class="active">Home</a></li>
+          <li><a href="index.php" class="active">Home</a></li>
           <li><a href="about.php">About</a></li>
           <li><a href="services.php">Services</a></li>
           <li><a href="portfolio.php">Portfolio</a></li>
@@ -107,16 +116,40 @@
         <div class="portfolio-isotope" data-portfolio-filter="*" data-portfolio-layout="masonry" data-portfolio-sort="original-order">
 
           <ul class="portfolio-flters" data-aos="fade-up" data-aos-delay="100">
-            <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-app">App</li>
+            <!-- <li data-filter="*" class="filter-active">All</li> -->
+            <!-- <li data-filter=".filter-app">App</li>
             <li data-filter=".filter-product">Product</li>
             <li data-filter=".filter-branding">Branding</li>
-            <li data-filter=".filter-books">Books</li>
+            <li data-filter=".filter-books">Books</li> -->
           </ul><!-- End Portfolio Filters -->
 
           <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="300">
 
-            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+          <!-- show all products read from database -->
+
+            <?php foreach ($DbMngp->getAllProduct()  as $allp) : ?>
+
+              <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                <img src="<?= $allp->getImg()?>" class="img-fluid" alt="">
+
+              <div class="portfolio-info">
+                <h4><?= $allp->getName()?></h4>
+                <p><?= $allp->getText()?></p>
+                <a href="<?= $allp->getImg()?>" title="<?= $allp->getName()?>" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <!-- <a href="portfolio-details.php" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a> -->
+              </div>
+
+
+
+              </div><!-- End Portfolio Item -->
+            <?php endforeach; ?>
+
+
+
+
+
+
+            <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-app">
               <img src="assets/img/portfolio/app-1.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>App 1</h4>
@@ -124,9 +157,9 @@
                 <a href="assets/img/portfolio/app-1.jpg" title="App 1" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="portfolio-details.php" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
-            </div><!-- End Portfolio Item -->
+            </div>End Portfolio Item -->
 
-            <div class="col-lg-4 col-md-6 portfolio-item filter-product">
+            <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-product">
               <img src="assets/img/portfolio/product-1.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Product 1</h4>
@@ -134,9 +167,9 @@
                 <a href="assets/img/portfolio/product-1.jpg" title="Product 1" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="portfolio-details.php" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
-            </div><!-- End Portfolio Item -->
+            </div>End Portfolio Item -->
 
-            <div class="col-lg-4 col-md-6 portfolio-item filter-branding">
+            <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-branding">
               <img src="assets/img/portfolio/branding-1.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Branding 1</h4>
@@ -144,9 +177,9 @@
                 <a href="assets/img/portfolio/branding-1.jpg" title="Branding 1" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="portfolio-details.php" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
-            </div><!-- End Portfolio Item -->
+            </div>End Portfolio Item -->
 
-            <div class="col-lg-4 col-md-6 portfolio-item filter-books">
+            <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-books">
               <img src="assets/img/portfolio/books-1.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Books 1</h4>
@@ -154,9 +187,9 @@
                 <a href="assets/img/portfolio/books-1.jpg" title="Branding 1" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="portfolio-details.php" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
-            </div><!-- End Portfolio Item -->
+            </div>End Portfolio Item -->
 
-            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-app">
               <img src="assets/img/portfolio/app-2.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>App 2</h4>
@@ -164,9 +197,9 @@
                 <a href="assets/img/portfolio/app-2.jpg" title="App 2" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="portfolio-details.php" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
-            </div><!-- End Portfolio Item -->
+            </div>End Portfolio Item -->
 
-            <div class="col-lg-4 col-md-6 portfolio-item filter-product">
+            <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-product">
               <img src="assets/img/portfolio/product-2.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Product 2</h4>
@@ -174,9 +207,9 @@
                 <a href="assets/img/portfolio/product-2.jpg" title="Product 2" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="portfolio-details.php" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
-            </div><!-- End Portfolio Item -->
+            </div>End Portfolio Item -->
 
-            <div class="col-lg-4 col-md-6 portfolio-item filter-branding">
+            <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-branding">
               <img src="assets/img/portfolio/branding-2.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Branding 2</h4>
@@ -184,9 +217,9 @@
                 <a href="assets/img/portfolio/branding-2.jpg" title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="portfolio-details.php" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
-            </div><!-- End Portfolio Item -->
+            </div>End Portfolio Item -->
 
-            <div class="col-lg-4 col-md-6 portfolio-item filter-books">
+            <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-books">
               <img src="assets/img/portfolio/books-2.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Books 2</h4>
@@ -194,9 +227,9 @@
                 <a href="assets/img/portfolio/books-2.jpg" title="Branding 2" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="portfolio-details.php" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
-            </div><!-- End Portfolio Item -->
+            </div>End Portfolio Item -->
 
-            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-app">
               <img src="assets/img/portfolio/app-3.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>App 3</h4>
@@ -204,9 +237,9 @@
                 <a href="assets/img/portfolio/app-3.jpg" title="App 3" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="portfolio-details.php" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
-            </div><!-- End Portfolio Item -->
+            </div>End Portfolio Item -->
 
-            <div class="col-lg-4 col-md-6 portfolio-item filter-product">
+            <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-product">
               <img src="assets/img/portfolio/product-3.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Product 3</h4>
@@ -214,9 +247,9 @@
                 <a href="assets/img/portfolio/product-3.jpg" title="Product 3" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="portfolio-details.php" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
-            </div><!-- End Portfolio Item -->
+            </div>End Portfolio Item -->
 
-            <div class="col-lg-4 col-md-6 portfolio-item filter-branding">
+            <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-branding">
               <img src="assets/img/portfolio/branding-3.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Branding 3</h4>
@@ -224,9 +257,9 @@
                 <a href="assets/img/portfolio/branding-3.jpg" title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="portfolio-details.php" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
-            </div><!-- End Portfolio Item -->
+            </div>End Portfolio Item -->
 
-            <div class="col-lg-4 col-md-6 portfolio-item filter-books">
+            <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-books">
               <img src="assets/img/portfolio/books-3.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Books 3</h4>
@@ -234,7 +267,7 @@
                 <a href="assets/img/portfolio/books-3.jpg" title="Branding 3" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="portfolio-details.php" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
-            </div><!-- End Portfolio Item -->
+            </div>End Portfolio Item -->
 
           </div><!-- End Portfolio Container -->
 

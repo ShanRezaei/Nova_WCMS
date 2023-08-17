@@ -46,8 +46,30 @@ public function addNewProduct(Portfolio $portfolio){
 
 
 
+//delete
+public function deleteProduct(int $id){
+    
+    // query to add new product db
+    $query=$this->db->prepare("DELETE FROM `portfolio` WHERE `id`=?");
+    $query->execute(array( $id));
+    
+    $result = $query->fetchAll();
+    return $result;
+
+}
 
 
+//return row count
+public function countProduct(){
+    
+    // query to add new product db
+    $query=$this->db->prepare("SELECT * FROM `portfolio`");
+    $query->execute();
+    
+   
+    return $query;
+
+}
 
 
 

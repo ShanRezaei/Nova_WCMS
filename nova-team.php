@@ -4,6 +4,7 @@ include "head.inc.php";
 $_SESSION['page'] = "index";
 //$DbMngpost = new DbManager();
 $DbMngall = new PortfolioManager();
+$DbMngclerk = new TeamManager();
 
 ?>
 <?php
@@ -210,7 +211,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
                     <div class="row">
                         <div class="col-lg-10">
-                            <h3 class="text-center font-weight-light my-4">Nova Portfolio</h3>
+                            <h3 class="text-center font-weight-light my-4">Nova Team</h3>
                             <div class="alert alert-warning" role="alert" style="display:<?php echo isset($showu) ? $showu : "block"; ?>">
                                 Log in to see the Table!
                             </div>
@@ -219,21 +220,23 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                                     <tr>
                                         <th>ID</th>
                                         <th>Image</th>
-                                        <th>Title</th>
-                                        <th>Description</th>
+                                        <th>FirstNmae</th>
+                                        <th>LastName</th>
+                                        <th>Job</th>
                                         <th>Delete</th>
                                         <th>Update</th>
 
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($DbMngall->getAllProduct()  as $all) : ?>
+                                    <?php foreach ($DbMngclerk->getAllClerks()  as $all) : ?>
 
                                         <tr>
                                             <td><?= $all->getId() ?></td>
-                                            <td> <img src="Nova/<?= $all->getImg() ?>" alt="myimg" width=8%></td>
-                                            <td><?= $all->getName() ?></td>
-                                            <td><?= $all->getText() ?></td>
+                                            <td> <img src="Nova/<?= $all->getImg() ?>" alt="myimg" width=10%></td>
+                                            <td><?= $all->getfirstName() ?></td>
+                                            <td><?= $all->getlastName() ?></td>
+                                            <td><?= $all->getjob() ?></td>
 
                                             <td><?php if ($_SESSION["accesor_level"] == "Admin") : ?>
                                                     <a onclick="javascript:return confirm('Are You Confirm Deletion?');" class="btn btn-warning " href="controller/control-portfolio.php ? action_portfolio=delete & id=<?= $all->getId() ?> & img_add=<?= $all->getImg() ?> "> Delete</a>
@@ -243,7 +246,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
                                             </td>
 
-                                            <td><a class="btn btn-warning " href="#" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $all->getId() ?>" data-img="<?= $all->getImg() ?>" data-name="<?= $all->getName() ?>" data-text="<?= $all->getText() ?>"> Update</a></td>
+                                            <td><a class="btn btn-warning " href="#" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $all->getId() ?>" data-img="<?= $all->getImg() ?>" data-fname="<?= $all->getfirstName() ?>" data-lname="<?= $all->getlastName() ?>"  data-job="<?= $all->getjob() ?>"> Update</a></td>
 
                                         </tr>
                                     <?php endforeach; ?>
@@ -252,14 +255,14 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
                             </table>
                             <!-- add modal by two tags -->
-                            <a href="#" class="btn btn-primary" id="addp" data-bs-toggle="modal" data-bs-target="#addModal">Add New Product</a>
-
-                            </div>
-                        </div>
-                        <div class="card mb-4">
+                            <a href="#" class="btn btn-primary" id="addp" data-bs-toggle="modal" data-bs-target="#addModalc">Add New Clerk</a>
 
                         </div>
                     </div>
+                    <div class="card mb-4">
+
+                    </div>
+                </div>
             </main>
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">
@@ -279,11 +282,11 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
     <!---------------------------------------- modals--------------------------------- -->
     <!-- Add new  modal -->
-    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addModalc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title">Add new Content</h3>
+                    <h3 class="modal-title">Add new Clerk</h3>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -293,28 +296,35 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
 
 
-                        <form id="form1" method="POST" action="controller/control-portfolio.php" enctype="multipart/form-data">
+                        <form id="form1" method="POST" action="controller/control-team.php" enctype="multipart/form-data">
                             <!-- hidden input -->
-                            <input type="hidden" name="action-portfolio" value="addproduct">
+                            <input type="hidden" name="action-team" value="addclerk">
 
 
                             <!----------------- general inputs--------------------------- -->
                             <div class="mb-3">
 
-                                <input type="text" class="form-control myinput" name="name" placeholder="Title" min="2" />
+                                <input type="text" class="form-control myinput" name="fname" placeholder="First Name" min="2" />
                                 <!-- error text to show -->
                                 <span style="color:chocolate"><?php echo isset($_SESSION['this_name_error']) ? $_SESSION['this_name_error'] : ""; ?></span>
                             </div>
                             <div class="mb-3">
 
-                                <input type="text" class="form-control myinput" name="description" id="lname" placeholder="Description" min="2" />
+                                <input type="text" class="form-control myinput" name="lname" id="lname" placeholder="Last Name" min="2" />
                                 <!-- error text to show -->
                                 <span style="color:chocolate"><?php echo isset($_SESSION['this_text_error']) ? $_SESSION['this_text_error'] : ""; ?></span>
                             </div>
 
                             <div class="mb-3">
 
-                                <input type="file" class="form-control myinput" id="avatar" name="avatar" />
+                                <input type="text" class="form-control myinput" name="job" id="job" placeholder="Job Title" min="2" />
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['this_text_error']) ? $_SESSION['this_text_error'] : ""; ?></span>
+                            </div>
+
+                            <div class="mb-3">
+
+                                <input type="file" class="form-control myinput" id="avatar" name="imagec" />
 
                                 <!-- error text to show -->
                                 <span style="color:chocolate"><?php echo isset($_SESSION['this_img_error']) ? $_SESSION['this_img_error'] : ""; ?></span>
@@ -324,7 +334,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
                             <!------------------------- buttons--------------------------- -->
                             <div>
-                                <input type="submit" value="Submit" name="submit2" class="btn btn-success mystyle2" />
+                                <input type="submit" value="Submit" name="submitc" class="btn btn-success mystyle2" />
 
                             </div>
                         </form>
@@ -380,12 +390,11 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                                 <input type="file" class="form-control myinput" id="avatar" name="avatar1" />
 
                                 <input type="hidden" class="form-control myinput" id="avatar" name="avatar2" disabled="disabled" />
-                                
+                                <img id="imgs" alt="myimg" width=20%>
                                 <!-- error text to show -->
                                 <span style="color:chocolate"><?php echo isset($_SESSION['this_img_error']) ? $_SESSION['this_img_error'] : ""; ?></span>
                             </div>
 
-                            <img id="imgs" src="" alt="myimg" width=20%   style="margin-bottom: 2%;" >
 
 
                             <!------------------------- buttons--------------------------- -->
@@ -394,7 +403,6 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
                             </div>
                         </form>
-                        
                     </div>
 
 
