@@ -2,9 +2,13 @@
 // to start our session and include all classes
 include "head.inc.php";
 $_SESSION['page'] = "index";
-//$DbMngpost = new DbManager();
+
+// make obj from classes
 $DbMngall = new PortfolioManager();
 $DbMngclerk = new TeamManager();
+$DbMngservice = new ServiceManager();
+$DbMngservicecard = new ServiceCardManager();
+
 
 ?>
 <?php
@@ -38,6 +42,21 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Dashboard - SB Admin</title>
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+
+    <!-- Vendor CSS Files -->
+    <link href="Nova/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="Nova/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="Nova/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="Nova/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="Nova/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="Nova/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <!-- <link href="Nova/assets/css/main.css" rel="stylesheet"> -->
+
+
+
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -211,7 +230,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
                     <div class="row">
                         <div class="col-lg-10">
-                            <h3 class="text-center font-weight-light my-4">Nova Team</h3>
+                            <h3 class="text-center font-weight-light my-4">Nova Service</h3>
                             <div class="alert alert-warning" role="alert" style="display:<?php echo isset($showu) ? $showu : "block"; ?>">
                                 Log in to see the Table!
                             </div>
@@ -219,34 +238,35 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Image</th>
-                                        <th>FirstName</th>
-                                        <th>LastName</th>
-                                        <th>Job</th>
+                                        <th>Icon</th>
+                                        <th>title</th>
+                                        <th>text</th>
+                                        <!-- update or delete -->
                                         <th>Delete</th>
                                         <th>Update</th>
 
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($DbMngclerk->getAllClerks()  as $all) : ?>
+                                    <?php foreach ($DbMngservice->getAllServices()  as $service) : ?>
 
                                         <tr>
-                                            <td><?= $all->getId() ?></td>
-                                            <td> <img src="Nova/<?= $all->getImg() ?>" alt="myimg" width=10%></td>
-                                            <td><?= $all->getfirstName() ?></td>
-                                            <td><?= $all->getlastName() ?></td>
-                                            <td><?= $all->getjob() ?></td>
+                                            <td><?= $service->getId() ?></td>
+                                            <td>
+                                                <div class="icon flex-shrink-0"><i class="bi <?= $service->getIcon() ?>" style="color: #f5cf13;"></i></div>
+                                            </td>
+                                            <td><?= $service->getTitle() ?></td>
+                                            <td><?= $service->getText() ?></td>
 
                                             <td><?php if ($_SESSION["accesor_level"] == "Admin") : ?>
-                                                    <a onclick="javascript:return confirm('Are You sure you want to delete?');" class="btn btn-warning " href="controller/control-team.php ? action_team=delete & idc=<?= $all->getId() ?> & img_c=<?= $all->getImg() ?> "> Delete</a>
+                                                    <a onclick="javascript:return confirm('Are You sure you want to delete?');" class="btn btn-warning " href="controller/control-service.php ? action_service=delete & id=<?= $service->getId() ?>  "> Delete</a>
 
                                                 <?php endif; ?>
 
 
                                             </td>
 
-                                            <td><a class="btn btn-warning " href="#" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $all->getId() ?>" data-img="<?= $all->getImg() ?>" data-fname="<?= $all->getfirstName() ?>" data-lname="<?= $all->getlastName() ?>"  data-job="<?= $all->getjob() ?>"> Update</a></td>
+                                            <td><a class="btn btn-warning " href="#" data-bs-toggle="modal" data-bs-target="#editModalservice" data-id="<?= $service->getId() ?>" data-icon="<?= $service->getIcon() ?>" data-title="<?= $service->getTitle() ?>" data-text="<?= $service->getText() ?>"> Update</a></td>
 
                                         </tr>
                                     <?php endforeach; ?>
@@ -255,7 +275,61 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
                             </table>
                             <!-- add modal by two tags -->
-                            <a href="#" class="btn btn-primary" id="addp" data-bs-toggle="modal" data-bs-target="#addModalc">Add New Clerk</a>
+                            <a href="#" class="btn btn-primary" id="addp" data-bs-toggle="modal" data-bs-target="#addModalservice">Add New Service</a>
+
+                        </div>
+
+
+
+
+                        <!------------------------------------------ service card section------------------------------------ -->
+                        <div class="col-lg-10">
+                            <h3 class="text-center font-weight-light my-4">Nova Service Cards</h3>
+                            <div class="alert alert-warning" role="alert" style="display:<?php echo isset($showu) ? $showu : "block"; ?>">
+                                Log in to see the Table!
+                            </div>
+                            <table class="table table-hover" style="display:<?php echo isset($showt) ? $showt : "none"; ?>">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Image</th>
+                                        <th>title</th>
+                                        <th>text</th>
+                                        <!-- update or delete -->
+                                        <th>Delete</th>
+                                        <th>Update</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($DbMngservicecard->getAllServicecards()  as $servicecard) : ?>
+
+                                        <tr>
+                                            <td><?= $servicecard->getId() ?></td>
+                                            <td>
+                                                <img src="Nova/<?= $servicecard->getImg() ?>" alt="myimg" width=12%>
+                                            </td>
+                                            <td><?= $servicecard->getTitle() ?></td>
+                                            <td><?= $servicecard->getText() ?></td>
+
+                                            <td><?php if ($_SESSION["accesor_level"] == "Admin") : ?>
+                                                    <a onclick="javascript:return confirm('Are You sure you want to delete?');" class="btn btn-warning " href="controller/control-service.php ? action_service_card=deletecard & idcard=<?= $servicecard->getId() ?> & img_card=<?= $servicecard->getImg() ?> "> Delete</a>
+
+                                                <?php endif; ?>
+
+
+                                            </td>
+
+                                            <td><a class="btn btn-warning " href="#" data-bs-toggle="modal" data-bs-target="#editModalservicecard" data-id="<?= $servicecard->getId() ?>" data-img="<?= $servicecard->getImg() ?>" data-title="<?= $servicecard->getTitle() ?>" data-text="<?= $servicecard->getText() ?>"> Update</a></td>
+
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+
+
+                            </table>
+                            <!-- add modal by two tags -->
+                            <a href="#" class="btn btn-primary" id="addp" data-bs-toggle="modal" data-bs-target="#addModalservicecard">Add New Service Card</a>
 
                         </div>
                     </div>
@@ -281,12 +355,15 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
 
     <!---------------------------------------- modals--------------------------------- -->
-    <!-- Add new  modal -->
-    <div class="modal fade" id="addModalc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+
+    <!-------------------- Add new  modal for services------------------------->
+
+    <div class="modal fade" id="addModalservice" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title">Add new Clerk</h3>
+                    <h3 class="modal-title">Add new Service</h3>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -296,45 +373,42 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
 
 
-                        <form id="form1" method="POST" action="controller/control-team.php" enctype="multipart/form-data">
+                        <form id="form3" method="POST" action="controller/control-service.php" enctype="multipart/form-data">
                             <!-- hidden input -->
-                            <input type="hidden" name="action-team" value="addclerk">
+                            <input type="hidden" name="action-service" value="addservice">
 
 
                             <!----------------- general inputs--------------------------- -->
                             <div class="mb-3">
 
-                                <input type="text" class="form-control myinput" name="fname" placeholder="First Name" min="2" />
+                                <input type="text" class="form-control myinput" name="title" placeholder="Title" min="2" />
                                 <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['clerk_fname_error']) ? $_SESSION['clerk_fname_error'] : ""; ?></span>
+                                <span style="color:chocolate"><?php echo isset($_SESSION['service_title_error']) ? $_SESSION['service_title_error'] : ""; ?></span>
                             </div>
                             <div class="mb-3">
 
-                                <input type="text" class="form-control myinput" name="lname" id="lname" placeholder="Last Name" min="2" />
+                                <input type="text" class="form-control myinput" name="text" id="lname" placeholder="Description" min="2" />
                                 <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['clerk_lname_error']) ? $_SESSION['clerk_lname_error'] : ""; ?></span>
+                                <span style="color:chocolate"><?php echo isset($_SESSION['service_text_error']) ? $_SESSION['service_text_error'] : ""; ?></span>
                             </div>
 
                             <div class="mb-3">
-
-                                <input type="text" class="form-control myinput" name="job" id="job" placeholder="Job Title" min="2" />
+                                <!-- drop down for icon -->
+                                <label class="form-label select-label">Icon:</label>
+                                <select id="cars" name="icons" class="select">
+                                    <option value=""></option>
+                                    <option value="bi-airplane-fill">airplane</option>
+                                    <option value="bi-android2">android</option>
+                                    <option value="bi-badge-ad-fill">Ad-Badge</option>
+                                    <option value="bi-bag-fill">Bag-fill</option>
+                                </select>
                                 <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['clerk_job_error']) ? $_SESSION['clerk_job_error'] : ""; ?></span>
+                                <span style="color:chocolate"><?php echo isset($_SESSION['service_text_error']) ? $_SESSION['service_text_error'] : ""; ?></span>
+
                             </div>
-
-                            <div class="mb-3">
-
-                                <input type="file" class="form-control myinput" id="avatar" name="imagec" />
-
-                                <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['clerk_img_error']) ? $_SESSION['clerk_img_error'] : ""; ?></span>
-                            </div>
-
-
-
                             <!------------------------- buttons--------------------------- -->
                             <div>
-                                <input type="submit" value="Submit" name="submitc" class="btn btn-success mystyle2" />
+                                <input type="submit" value="Submit" name="submits" class="btn btn-success mystyle2" />
 
                             </div>
                         </form>
@@ -350,9 +424,9 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
 
 
-    <!-- edit modal -->
+    <!-- -----------------------------edit modal service---------------------->
 
-    <div class="modal fade" id="editModal">
+    <div class="modal fade" id="editModalservice">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -366,40 +440,41 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
 
 
-                        <form id="form2" method="POST" action="controller/control-team.php" enctype="multipart/form-data">
+                        <form id="form2" method="POST" action="controller/control-service.php" enctype="multipart/form-data">
                             <!-- hidden input -->
-                            <input type="hidden" name="action-team" value="editclerk">
+                            <input type="hidden" name="action-service" value="editservice">
 
                             <input type="hidden" name="id">
                             <!----------------- general inputs--------------------------- -->
                             <div class="mb-3">
 
-                                <input type="text" class="form-control myinput" name="name1" min="2" />
+                                <input type="text" class="form-control myinput" name="title1" min="2" />
                                 <!-- error text to show -->
                                 <span style="color:chocolate"><?php echo isset($_SESSION['this_name_error']) ? $_SESSION['this_name_error'] : ""; ?></span>
                             </div>
                             <div class="mb-3">
 
-                                <input type="text" class="form-control myinput" name="description1" id="lname" min="2" />
+                                <input type="text" class="form-control myinput" name="description1" id="description" min="2" />
                                 <!-- error text to show -->
                                 <span style="color:chocolate"><?php echo isset($_SESSION['this_text_error']) ? $_SESSION['this_text_error'] : ""; ?></span>
                             </div>
 
                             <div class="mb-3">
+                                <!-- drop down for icon -->
+                                <label class="form-label select-label">Icon:</label>
+                                <select id="cars" name="icons" class="select">
+                                    <option value="bi-airplane-fill">airplane</option>
+                                    <option value="bi-android2">android</option>
+                                    <option value="bi-badge-ad-fill">Ad-Badge</option>
+                                    <option value="bi-bag-fill">Bag-fill</option>
+                                </select>
 
-                                <input type="file" class="form-control myinput" id="avatar" name="avatar1" />
-
-                                <input type="hidden" class="form-control myinput" id="avatar" name="avatar2" disabled="disabled" />
-                                <img id="imgs" alt="myimg" width=20%>
-                                <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['this_img_error']) ? $_SESSION['this_img_error'] : ""; ?></span>
                             </div>
-
 
 
                             <!------------------------- buttons--------------------------- -->
                             <div>
-                                <input type="submit" value="Update" name="submit3" class="btn btn-success mystyle2" />
+                                <input type="submit" value="Update" name="submit4" class="btn btn-success mystyle2" />
 
                             </div>
                         </form>
@@ -415,7 +490,127 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
 
 
+    <!-- ------------------------modals for service cards------------------- -->
 
+    <!-------------------- Add new  modal for service cards------------------------->
+
+    <div class="modal fade" id="addModalservicecard" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Add new Service Card</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- create our form to do the registration -->
+                    <!-- --------------------main body of the form---------------- -->
+                    <div class="container" id="mymain">
+
+
+
+                        <form id="form5" method="POST" action="controller/control-service.php" enctype="multipart/form-data">
+                            <!-- hidden input -->
+                            <input type="hidden" name="action-service" value="addservicecard">
+
+
+                            <!----------------- general inputs--------------------------- -->
+                            <div class="mb-3">
+
+                                <input type="text" class="form-control myinput" name="titlecard" placeholder="Title" min="2" />
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['service_title_card_error']) ? $_SESSION['service_title_card_error'] : ""; ?></span>
+                            </div>
+                            <div class="mb-3">
+
+                                <input type="text" class="form-control myinput" name="textcard" id="lname" placeholder="Description" min="2" />
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['service_text_card_error']) ? $_SESSION['service_text_card_error'] : ""; ?></span>
+                            </div>
+
+                            <div class="mb-3">
+
+                                <input type="file" class="form-control myinput" id="avatar" name="imagecard" />
+
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['service_img_card_error']) ? $_SESSION['service_img_card_error'] : ""; ?></span>
+                            </div>
+
+                            <!------------------------- buttons--------------------------- -->
+                            <div>
+                                <input type="submit" value="Submit" name="submits" class="btn btn-success mystyle2" />
+
+                            </div>
+                        </form>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <!-------------------- edit  modal for service cards------------------------->
+
+    <div class="modal fade" id="editModalservicecard" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Edit Service Card</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- create our form to do the registration -->
+                    <!-- --------------------main body of the form---------------- -->
+                    <div class="container" id="mymain">
+
+
+
+                        <form id="form5" method="POST" action="controller/control-service.php" enctype="multipart/form-data">
+                            <!-- hidden input -->
+                            <input type="hidden" name="action-service" value="editservicecard">
+
+
+                            <!----------------- general inputs--------------------------- -->
+                            <div class="mb-3">
+
+                                <input type="text" class="form-control myinput" name="titlecard1" placeholder="Title" min="2" />
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['service_title_error']) ? $_SESSION['service_title_error'] : ""; ?></span>
+                            </div>
+                            <div class="mb-3">
+
+                                <input type="text" class="form-control myinput" name="textcard1" id="lname" placeholder="Description" min="2" />
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['service_text_error']) ? $_SESSION['service_text_error'] : ""; ?></span>
+                            </div>
+
+                            <div class="mb-3">
+
+                                <input type="file" class="form-control myinput" id="avatar" name="imagecard1" />
+
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['clerk_img_error']) ? $_SESSION['clerk_img_error'] : ""; ?></span>
+                            </div>
+
+                            <!------------------------- buttons--------------------------- -->
+                            <div>
+                                <input type="submit" value="Submit" name="submits1" class="btn btn-success mystyle2" />
+
+                            </div>
+                        </form>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 
 

@@ -109,17 +109,53 @@ if (!empty($action_c)) {
 
 
                 // //make the path of the avatar and check other character of image to be correct
-                $image_name = $_FILES['avatar']['name'];
-                $image_type = $_FILES['avatar']['type'];
-                $image_size = $_FILES['avatar']['size'];
-                $image_temp_name = $_FILES['avatar']['tmp_name'];
+                $image_name = $_FILES['imagec']['name'];
+                $image_type = $_FILES['imagec']['type'];
+                $image_size = $_FILES['imagec']['size'];
+                $image_temp_name = $_FILES['imagec']['tmp_name'];
                 $array_name = explode(".", $image_name);
                 $image_format = end($array_name); //get last index of array
-                //make an address for saving avatar
 
+                //make an address for saving img
 
+                $countclerk = $DbMgrclerk->countClerk()->rowCount();
 
+                $image_address = "Nova/assets/img/team/" . "team-" . $countclerk . "." . $image_format;
 
+                //check for general errors
+                if (!$_FILES['imagec']['error']) {
+                    // check the size of the image
+                    if ($image_size < 1024000) {
+                        //check for type of the image
+                        if (in_array($image_type, $accepted_format)) {
+                            //uploade img in the folder in project root
+                            move_uploaded_file($image_temp_name, "../" . $image_address);
+
+                            //create content object
+                            $newimgaddress = "assets/img/team/" . "team-" . $countclerk . "." . $image_format;
+                            $clerk = new Team($id, $newimgaddress, $fname, $lname,$job);
+                            $addclerk = $DbMgrclerk->addNewMember($clerk);
+
+                            if (isset($addclerk)) {
+
+                                echo "<script>alert('you add new Clerk successfully.');</script>";
+                                echo "<script>window.location.href='../nova-team.php';</script>";
+                            } else {
+                                echo "<script>alert('Try again.');</script>";
+                                echo "<script>window.location.href='../nova-team.php';</script>";
+                            }
+                        } else {
+                            echo "<script>alert('invalid image format.Choose the new one.');</script>";
+                            echo "<script>window.location.href='../nova-team.php';</script>";
+                        }
+                    } else {
+                        echo "<script>alert('the size of the image is big.Choose the new one.');</script>";
+                        echo "<script>window.location.href='../nova-team.php';</script>";
+                    }
+                } else {
+                    echo "<script>alert('there is an error for image, choose another one!');</script>";
+                    echo "<script>window.location.href='../nova-team.php';</script>";
+                }
 
 
             } else {
@@ -134,5 +170,43 @@ if (!empty($action_c)) {
 
         // do the validation
         echo "bye";
+    }
+}
+
+
+// to delete
+if (!empty($_GET["action_team"])) {
+    if ($_GET["action_team"] = "delete") {
+
+        // get the row number
+         $count2 = $DbMgrclerk->countClerk()->rowCount();
+         // give the permission to delete
+        if($count2>1){
+            // remove the img
+
+        if (file_exists("../Nova/" . $_GET["img_c"])) {
+            unlink("../Nova/" . $_GET["img_c"]);
+
+            $resultdelete = $DbMgrclerk->deleteclerk(trim($_GET["idc"]));
+
+            if (isset($resultdelete)) {
+
+                echo "<script>alert('the content is deleted successfully.');</script>";
+                echo "<script>window.location.href='../nova-team.php';</script>";
+            } else {
+                echo "<script>alert('problem in deleting.try again.');</script>";
+                echo "<script>window.location.href='../nova-team.php';</script>";
+            }
+        } else {
+            echo "<script>alert('img file does not exist.try again.');</script>";
+                echo "<script>window.location.href='../nova-team.php';</script>";
+        }
+
+        }else{
+            echo "<script>alert('you are not allowed to delete.');</script>";
+                echo "<script>window.location.href='../nova-team.php';</script>";
+        }
+
+
     }
 }

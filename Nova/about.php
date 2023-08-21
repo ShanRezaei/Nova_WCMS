@@ -1,3 +1,14 @@
+<?php
+// to start our session and include all classes
+include "../head.inc.php";
+$DbMngc = new TeamManager();
+$DbMngabout = new AboutManager();
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,7 +66,7 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-        <li><a href="index.php" class="active">Home</a></li>
+          <li><a href="index.php" class="active">Home</a></li>
           <li><a href="about.php">About</a></li>
           <li><a href="services.php">Services</a></li>
           <li><a href="portfolio.php">Portfolio</a></li>
@@ -132,49 +143,31 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-header">
-          <h2>Why Choose Us</h2>
+          <h2 style="margin-top: 5%;">Why Choose Us</h2>
 
         </div>
 
         <div class="row g-0" data-aos="fade-up" data-aos-delay="200">
 
-          <div class="col-xl-5 img-bg" style="background-image: url('assets/img/why-us-bg.jpg')"></div>
+          <?php foreach ($DbMngabout->getAllAboutOne()  as $allcao) : ?>
+            <div class="col-xl-5 img-bg" style="background-image: url('<?= $allcao->getImg() ?>')"></div>
+          <?php endforeach; ?>
           <div class="col-xl-7 slides  position-relative">
 
             <div class="slides-1 swiper">
               <div class="swiper-wrapper">
 
-                <div class="swiper-slide">
-                  <div class="item">
-                    <h3 class="mb-3">Let's grow your business together</h3>
-                    <h4 class="mb-3">Optio reiciendis accusantium iusto architecto at quia minima maiores quidem, dolorum.</h4>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, ipsam perferendis asperiores explicabo vel tempore velit totam, natus nesciunt accusantium dicta quod quibusdam ipsum maiores nobis non, eum. Ullam reiciendis dignissimos laborum aut, magni voluptatem velit doloribus quas sapiente optio.</p>
-                  </div>
-                </div><!-- End slide item -->
+                <?php foreach ($DbMngabout->getAllAboutTwo()  as $allcaT) : ?>
+                  <div class="swiper-slide">
+                    <div class="item">
+                      <h3 class="mb-3"><?= $allcaT->getTitleOne() ?></h3>
+                      <h4 class="mb-3"><?= $allcaT->getTitleTwo() ?></h4>
+                      <p><?= $allcaT->getText() ?></p>
+                    </div>
+                  </div><!-- End slide item -->
+                <?php endforeach; ?>
 
-                <div class="swiper-slide">
-                  <div class="item">
-                    <h3 class="mb-3">Unde perspiciatis ut repellat dolorem</h3>
-                    <h4 class="mb-3">Amet cumque nam sed voluptas doloribus iusto. Dolorem eos aliquam quis.</h4>
-                    <p>Dolorem quia fuga consectetur voluptatem. Earum consequatur nulla maxime necessitatibus cum accusamus. Voluptatem dolorem ut numquam dolorum delectus autem veritatis facilis. Et ea ut repellat ea. Facere est dolores fugiat dolor.</p>
-                  </div>
-                </div><!-- End slide item -->
-
-                <div class="swiper-slide">
-                  <div class="item">
-                    <h3 class="mb-3">Aliquid non alias minus</h3>
-                    <h4 class="mb-3">Necessitatibus voluptatibus explicabo dolores a vitae voluptatum.</h4>
-                    <p>Neque voluptates aut. Soluta aut perspiciatis porro deserunt. Voluptate ut itaque velit. Aut consectetur voluptatem aspernatur sequi sit laborum. Voluptas enim dolorum fugiat aut.</p>
-                  </div>
-                </div><!-- End slide item -->
-
-                <div class="swiper-slide">
-                  <div class="item">
-                    <h3 class="mb-3">Necessitatibus suscipit non voluptatem quibusdam</h3>
-                    <h4 class="mb-3">Tempora quos est ut quia adipisci ut voluptas. Deleniti laborum soluta nihil est. Eum similique neque autem ut.</h4>
-                    <p>Ut rerum et autem vel. Et rerum molestiae aut sit vel incidunt sit at voluptatem. Saepe dolorem et sed voluptate impedit. Ad et qui sint at qui animi animi rerum.</p>
-                  </div>
-                </div><!-- End slide item -->
+               
 
               </div>
               <div class="swiper-pagination"></div>
@@ -193,9 +186,11 @@
       <div class="container" data-aos="fade-up">
         <div class="row justify-content-center">
           <div class="col-lg-6 text-center">
-            <h3>Ut fugiat aliquam aut non</h3>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
-            <a class="cta-btn" href="#">Call To Action</a>
+          <?php foreach ($DbMngabout->getAllAboutThree()  as $allcaTR) : ?>
+            <h3><?= $allcaTR->getTitle() ?></h3>
+            <p><?= $allcaTR->getText() ?></p>
+            <a class="cta-btn" href="<?= $allcaTR->getLink() ?>"><?= $allcaTR->getLinkText() ?></a>
+            <?php endforeach; ?>
           </div>
         </div>
 
@@ -213,78 +208,27 @@
 
         <div class="row gy-4">
 
-          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="team-member">
-              <div class="member-img">
-                <img src="assets/img/team/team-1.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
+          <?php foreach ($DbMngc->getAllClerks()  as $allc) : ?>
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+              <div class="team-member">
+                <div class="member-img">
+                  <img src="<?= $allc->getImg() ?>" class="img-fluid" alt="">
+                  <div class="social">
+                    <!-- <a href=""><i class="bi bi-twitter"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
                   <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a> -->
+                  </div>
+                </div>
+                <div class="member-info">
+                  <h4><?= $allc->getfirstName() ?> <?= $allc->getlastName() ?></h4>
+                  <span><?= $allc->getjob() ?></span>
                 </div>
               </div>
-              <div class="member-info">
-                <h4>Walter White</h4>
-                <span>Chief Executive Officer</span>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
+            </div><!-- End Team Member -->
 
-          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="team-member">
-              <div class="member-img">
-                <img src="assets/img/team/team-2.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Sarah Jhonson</h4>
-                <span>Product Manager</span>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
 
-          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="team-member">
-              <div class="member-img">
-                <img src="assets/img/team/team-3.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>William Anderson</h4>
-                <span>CTO</span>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
-            <div class="team-member">
-              <div class="member-img">
-                <img src="assets/img/team/team-4.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Amanda Jepson</h4>
-                <span>Accountant</span>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
+          <?php endforeach; ?>
         </div>
 
       </div>

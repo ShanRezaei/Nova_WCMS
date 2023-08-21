@@ -9,7 +9,7 @@ class PortfolioManager extends DbConnector {
 //get all content
 public function getAllProduct(){
     $product_obj = array();
-    // query to get all users comments from posts db
+    // query to get all content db
     $query = $this->db->query("SELECT id,img,name,text FROM portfolio ;");
     $products = $query->fetchAll(PDO::FETCH_ASSOC);
 
@@ -49,7 +49,7 @@ public function addNewProduct(Portfolio $portfolio){
 //delete
 public function deleteProduct(int $id){
     
-    // query to add new product db
+    // query to delete new product db
     $query=$this->db->prepare("DELETE FROM `portfolio` WHERE `id`=?");
     $query->execute(array( $id));
     
@@ -62,7 +62,7 @@ public function deleteProduct(int $id){
 //return row count
 public function countProduct(){
     
-    // query to add new product db
+    // query to count product db
     $query=$this->db->prepare("SELECT * FROM `portfolio`");
     $query->execute();
     
@@ -70,6 +70,8 @@ public function countProduct(){
     return $query;
 
 }
+
+// update
 
 
 

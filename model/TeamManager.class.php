@@ -8,7 +8,7 @@ class TeamManager extends DbConnector {
     //get all content
 public function getAllClerks(){
     $clerk_obj = array();
-    // query to get all users comments from posts db
+    // query to get all clerks db
     $query = $this->db->query("SELECT id,img,fname,lname,job FROM team ;");
     $clerks = $query->fetchAll(PDO::FETCH_ASSOC);
 
@@ -45,7 +45,35 @@ public function addNewMember(Team $team){
 }
 
 
+// delete team member
 
+public function deleteclerk(int $id){
+    
+    // query to delete db
+    $query=$this->db->prepare("DELETE FROM `team` WHERE `id`=?");
+    $query->execute(array( $id));
+    
+    $result = $query->fetchAll();
+    return $result;
+
+}
+
+
+
+// row count
+public function countClerk(){
+    
+    // query to count service db
+    $query=$this->db->prepare("SELECT * FROM `team`");
+    $query->execute();
+    
+   
+    return $query;
+
+}
+
+
+// update team
 
 
 

@@ -190,7 +190,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active">Welcome to Nova Dashboard</li>
                     </ol>
-                    <section id="hero" class="hero d-flex align-items-center" style="margin-top: 9%;">
+                    <section id="hero" class="hero d-flex align-items-center" style="margin-top: 4%;">
                         <!-- <div class="container">
       <div class="row">
         <div class="col-xl-12">
