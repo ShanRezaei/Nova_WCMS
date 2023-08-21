@@ -101,7 +101,7 @@
     </div><!-- End Breadcrumbs -->
 
     <!-- ======= About Section ======= -->
-    <section id="about" class="about">
+    <!-- <section id="about" class="about">
       <div class="container" data-aos="fade-up">
 
         <div class="row gy-4" data-aos="fade-up">
@@ -125,7 +125,7 @@
         </div>
 
       </div>
-    </section><!-- End About Section -->
+    </section>End About Section -->
 
     <!-- ======= Why Choose Us Section ======= -->
     <section id="why-us" class="why-us">

@@ -306,20 +306,20 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
                                 <input type="text" class="form-control myinput" name="fname" placeholder="First Name" min="2" />
                                 <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['this_name_error']) ? $_SESSION['this_name_error'] : ""; ?></span>
+                                <span style="color:chocolate"><?php echo isset($_SESSION['clerk_fname_error']) ? $_SESSION['clerk_fname_error'] : ""; ?></span>
                             </div>
                             <div class="mb-3">
 
                                 <input type="text" class="form-control myinput" name="lname" id="lname" placeholder="Last Name" min="2" />
                                 <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['this_text_error']) ? $_SESSION['this_text_error'] : ""; ?></span>
+                                <span style="color:chocolate"><?php echo isset($_SESSION['clerk_lname_error']) ? $_SESSION['clerk_lname_error'] : ""; ?></span>
                             </div>
 
                             <div class="mb-3">
 
                                 <input type="text" class="form-control myinput" name="job" id="job" placeholder="Job Title" min="2" />
                                 <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['this_text_error']) ? $_SESSION['this_text_error'] : ""; ?></span>
+                                <span style="color:chocolate"><?php echo isset($_SESSION['clerk_job_error']) ? $_SESSION['clerk_job_error'] : ""; ?></span>
                             </div>
 
                             <div class="mb-3">
@@ -327,7 +327,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                                 <input type="file" class="form-control myinput" id="avatar" name="imagec" />
 
                                 <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['this_img_error']) ? $_SESSION['this_img_error'] : ""; ?></span>
+                                <span style="color:chocolate"><?php echo isset($_SESSION['clerk_img_error']) ? $_SESSION['clerk_img_error'] : ""; ?></span>
                             </div>
 
 
@@ -366,9 +366,9 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
 
 
-                        <form id="form2" method="POST" action="controller/control-portfolio.php" enctype="multipart/form-data">
+                        <form id="form2" method="POST" action="controller/control-team.php" enctype="multipart/form-data">
                             <!-- hidden input -->
-                            <input type="hidden" name="action-portfolio" value="editproduct">
+                            <input type="hidden" name="action-team" value="editclerk">
 
                             <input type="hidden" name="id">
                             <!----------------- general inputs--------------------------- -->

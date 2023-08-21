@@ -34,7 +34,7 @@ if(!empty($action_p)){
     if($action_p == "addproduct"){
 
         // do the validation
-        echo "hello";
+       // echo "hello";
 
         if (!empty($_POST['name']) && !empty($_POST['description']) && !empty($_FILES['avatar'])){
 
@@ -120,8 +120,9 @@ if(!empty($action_p)){
                         $addproduct = $DbMgrp->addNewProduct($product);
 
                         if (isset($addproduct)) {
+
                             echo "<script>alert('you add new product successfully.');</script>";
-                        echo "<script>window.location.href='../nova-portfolio.php';</script>";
+                           echo "<script>window.location.href='../nova-portfolio.php';</script>";
 
                         }else{
                             echo "<script>alert('Try again.');</script>";
