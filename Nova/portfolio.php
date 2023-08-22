@@ -2,6 +2,7 @@
 // to start our session and include all classes
 include "../head.inc.php";
 $DbMngp = new PortfolioManager();
+$DbMngcontact = new ContactManager();
 
 ?>
 
@@ -149,125 +150,7 @@ $DbMngp = new PortfolioManager();
 
 
 
-            <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-              <img src="assets/img/portfolio/app-1.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>App 1</h4>
-                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                <a href="assets/img/portfolio/app-1.jpg" title="App 1" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.php" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div>End Portfolio Item -->
-
-            <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-product">
-              <img src="assets/img/portfolio/product-1.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Product 1</h4>
-                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                <a href="assets/img/portfolio/product-1.jpg" title="Product 1" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.php" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div>End Portfolio Item -->
-
-            <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-branding">
-              <img src="assets/img/portfolio/branding-1.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Branding 1</h4>
-                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                <a href="assets/img/portfolio/branding-1.jpg" title="Branding 1" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.php" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div>End Portfolio Item -->
-
-            <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-books">
-              <img src="assets/img/portfolio/books-1.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Books 1</h4>
-                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                <a href="assets/img/portfolio/books-1.jpg" title="Branding 1" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.php" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div>End Portfolio Item -->
-
-            <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-              <img src="assets/img/portfolio/app-2.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>App 2</h4>
-                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                <a href="assets/img/portfolio/app-2.jpg" title="App 2" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.php" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div>End Portfolio Item -->
-
-            <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-product">
-              <img src="assets/img/portfolio/product-2.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Product 2</h4>
-                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                <a href="assets/img/portfolio/product-2.jpg" title="Product 2" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.php" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div>End Portfolio Item -->
-
-            <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-branding">
-              <img src="assets/img/portfolio/branding-2.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Branding 2</h4>
-                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                <a href="assets/img/portfolio/branding-2.jpg" title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.php" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div>End Portfolio Item -->
-
-            <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-books">
-              <img src="assets/img/portfolio/books-2.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Books 2</h4>
-                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                <a href="assets/img/portfolio/books-2.jpg" title="Branding 2" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.php" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div>End Portfolio Item -->
-
-            <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-              <img src="assets/img/portfolio/app-3.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>App 3</h4>
-                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                <a href="assets/img/portfolio/app-3.jpg" title="App 3" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.php" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div>End Portfolio Item -->
-
-            <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-product">
-              <img src="assets/img/portfolio/product-3.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Product 3</h4>
-                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                <a href="assets/img/portfolio/product-3.jpg" title="Product 3" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.php" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div>End Portfolio Item -->
-
-            <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-branding">
-              <img src="assets/img/portfolio/branding-3.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Branding 3</h4>
-                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                <a href="assets/img/portfolio/branding-3.jpg" title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.php" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div>End Portfolio Item -->
-
-            <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-books">
-              <img src="assets/img/portfolio/books-3.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Books 3</h4>
-                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                <a href="assets/img/portfolio/books-3.jpg" title="Branding 3" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.php" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div>End Portfolio Item -->
+            
 
           </div><!-- End Portfolio Container -->
 
@@ -284,42 +167,43 @@ $DbMngp = new PortfolioManager();
     <div class="footer-content">
       <div class="container">
         <div class="row gy-4">
-          <div class="col-lg-5 col-md-12 footer-info">
+          <div class="col-lg-6 col-md-12 footer-info">
             <a href="index.html" class="logo d-flex align-items-center">
-              <span>Nova</span>
+            <?php foreach ($DbMngcontact->getAllContactTwo()  as $allt) : ?>
+              <span><?= $allt->getName() ?></span>
             </a>
-            <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+            <p><?= $allt->getText() ?></p>
+
+            <?php endforeach; ?>
             <div class="social-links d-flex  mt-3">
-              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+            <?php foreach ($DbMngcontact->getAllContactThree()  as $alltt) : ?>
+              <a href="<?= $alltt->getLinkAddress() ?>" class="twitter"><i class="bi <?= $alltt->getIcon() ?>"></i></a>
+
+            <?php endforeach; ?>
             </div>
           </div>
 
-          <div class="col-lg-2 col-6 footer-links">
+          <div class="col-lg-3 col-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
-              <li><i class="bi bi-dash"></i> <a href="#">Home</a></li>
-              <li><i class="bi bi-dash"></i> <a href="#">About us</a></li>
-              <li><i class="bi bi-dash"></i> <a href="#">Services</a></li>
-              <li><i class="bi bi-dash"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bi bi-dash"></i> <a href="#">Privacy policy</a></li>
+            <?php foreach ($DbMngcontact->getAllContactFour()  as $allf) : ?>
+              <li><i class="bi bi-dash"></i> <a href="<?= $allf->getLink() ?>"><?= $allf->getText() ?></a></li>
+
+              <?php endforeach; ?>
             </ul>
           </div>
 
-          <div class="col-lg-2 col-6 footer-links">
+          <div class="col-lg-3 col-6 footer-links">
             <h4>Our Services</h4>
             <ul>
-              <li><i class="bi bi-dash"></i> <a href="#">Web Design</a></li>
-              <li><i class="bi bi-dash"></i> <a href="#">Web Development</a></li>
-              <li><i class="bi bi-dash"></i> <a href="#">Product Management</a></li>
-              <li><i class="bi bi-dash"></i> <a href="#">Marketing</a></li>
-              <li><i class="bi bi-dash"></i> <a href="#">Graphic Design</a></li>
+            <?php foreach ($DbMngcontact->getAllContactFive()  as $allfi) : ?>
+              <li><i class="bi bi-dash"></i> <a href="<?= $allfi->getLink() ?>"><?= $allfi->getText() ?></a></li>
+
+              <?php endforeach; ?>
             </ul>
           </div>
 
-          <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <!-- <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
             <h4>Contact Us</h4>
             <p>
               A108 Adam Street <br>
@@ -329,25 +213,14 @@ $DbMngp = new PortfolioManager();
               <strong>Email:</strong> info@example.com<br>
             </p>
 
-          </div>
+          </div> -->
 
         </div>
       </div>
     </div>
 
     <div class="footer-legal">
-      <div class="container">
-        <div class="copyright">
-          &copy; Copyright <strong><span>Nova</span></strong>. All Rights Reserved
-        </div>
-        <div class="credits">
-          <!-- All the links in the footer should remain intact. -->
-          <!-- You can delete the links only if you purchased the pro version. -->
-          <!-- Licensing information: https://bootstrapmade.com/license/ -->
-          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nova-bootstrap-business-template/ -->
-          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-        </div>
-      </div>
+      
     </div>
   </footer><!-- End Footer --><!-- End Footer -->
 

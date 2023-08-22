@@ -50,11 +50,49 @@ class AboutManager extends DbConnector
     }
 
     // add new
+    public function addNewpage(AboutTwo $abouttwo){
+    
+        // query to add new product db
+        $query=$this->db->prepare("INSERT INTO `abouttwo`( `titleone`, `titletwo`, `text`) VALUES (?,?,?)");
+        $query->execute(array(
+            $abouttwo->getTitleOne(),
+            $abouttwo->getTitleTwo(),
+            $abouttwo->getText(),
+        
+        ));
+        
+        $result = $query->fetchAll();
+        return $result;
+    
+    }
 
     // row count
 
+    public function countPage(){
+    
+        // query to count product db
+        $query=$this->db->prepare("SELECT * FROM `abouttwo`");
+        $query->execute();
+        
+       
+        return $query;
+    
+    }
+
     // delete
 
+    public function deletePage(int $id){
+    
+        // query to delete new product db
+        $query=$this->db->prepare("DELETE FROM `abouttwo` WHERE `id`=?");
+        $query->execute(array( $id));
+        
+        $result = $query->fetchAll();
+        return $result;
+    
+    }
+
+    
     // update
 
 

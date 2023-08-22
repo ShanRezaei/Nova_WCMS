@@ -3,7 +3,8 @@
 include "head.inc.php";
 $_SESSION['page'] = "index";
 //$DbMngpost = new DbManager();
-$DbMngabout = new AboutManager();
+//$DbMngall = new PortfolioManager();
+$DbMngcontactone = new ContactManager();
 
 ?>
 <?php
@@ -37,6 +38,15 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Dashboard - SB Admin</title>
+
+    <!-- Vendor CSS Files -->
+    <link href="Nova/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="Nova/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="Nova/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="Nova/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="Nova/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="Nova/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -190,106 +200,27 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active">Welcome to Nova Dashboard</li>
                     </ol>
-                    
+                    <section id="hero" class="hero d-flex align-items-center" style="margin-top: 4%;">
+                        <!-- <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          <h2 data-aos="fade-up">Focus On What Matters</h2>
+          <blockquote data-aos="fade-up" data-aos-delay="100">
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis cum recusandae eum laboriosam voluptatem repudiandae odio, vel exercitationem officiis provident minima. </p>
+          </blockquote>
+          <div class="d-flex"data-aos="fade-up" data-aos-delay="200" > -->
+                        <!-- <a href="#about" class="btn-get-started">Get Started</a> -->
+                        <!-- <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
+                        <!-- </div>
+
+        </div>
+      </div>
+    </div> -->
+                    </section><!-- End Hero Section -->
 
                     <div class="row">
-
-                     
-                          <!-- --------------------about one ------------>
                         <div class="col-lg-10">
-                            <h3 class="text-center font-weight-light my-4">Nova About</h3>
-                            <div class="alert alert-warning" role="alert" style="display:<?php echo isset($showu) ? $showu : "block"; ?>">
-                                Log in to see the Table!
-                            </div>
-                            <table class="table table-hover" style="display:<?php echo isset($showt) ? $showt : "none"; ?>">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Image</th>
-
-                                        <th>Update</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($DbMngabout->getAllAboutOne()  as $allaboutone) : ?>
-
-                                        <tr>
-                                            <td><?= $allaboutone->getId() ?></td>
-                                            <td> <img src="Nova/<?= $allaboutone->getImg() ?>" alt="myimg" width=5%></td>
-
-
-
-                                            <td><a class="btn btn-warning " href="#" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $allaboutone->getId() ?>" data-img="<?= $allaboutone->getImg() ?>"> Update</a></td>
-
-                                        </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-
-
-                            </table>
-                            <!-- add modal by two tags -->
-                            <!-- <a href="#" class="btn btn-primary" id="addp" data-bs-toggle="modal" data-bs-target="#addModal">Add New Product</a> -->
-
-                        </div>
-
-
-
-                        <!------------------------ about two -------------------->
-                        <div class="col-lg-10">
-                            <h3 class="text-center font-weight-light my-4">Nova About Descriptions</h3>
-                            <div class="alert alert-warning" role="alert" style="display:<?php echo isset($showu) ? $showu : "block"; ?>">
-                                Log in to see the Table!
-                            </div>
-                            <table class="table table-hover" style="display:<?php echo isset($showt) ? $showt : "none"; ?>">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>First Title</th>
-                                        <th>Second Title</th>
-                                        <th>Description</th>
-
-                                        <th>Delete</th>
-                                        <th>Update</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($DbMngabout->getAllAboutTwo()  as $allabouttwo) : ?>
-
-                                        <tr>
-                                            <td><?= $allabouttwo->getId() ?></td>
-                                            <td> <?= $allabouttwo->getTitleOne() ?></td>
-                                            <td> <?= $allabouttwo->getTitleTwo() ?></td>
-                                            <td> <?= $allabouttwo->getText() ?></td>
-
-
-                                            <td><?php if ($_SESSION["accesor_level"] == "Admin") : ?>
-                                                    <a onclick="javascript:return confirm('Are You sure you want to delete?');" class="btn btn-warning " href="controller/control-about.php ? action_about=delete & id=<?= $allabouttwo->getId() ?>  "> Delete</a>
-
-                                                <?php endif; ?>
-
-
-                                            </td>
-
-                                            <td><a class="btn btn-warning " href="#" data-bs-toggle="modal" data-bs-target="#editModalabouttwo" data-id="<?= $allabouttwo->getId() ?>" data-titleone="<?= $allabouttwo->getTitleOne() ?>"  data-titletwo="<?= $allabouttwo->getTitleTwo() ?>"  data-text="<?= $allabouttwo->getText() ?>"> Update</a></td>
-
-                                        </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-
-
-                            </table>
-                            <!-- add modal by two tags -->
-                            <a href="#" class="btn btn-primary" id="addp" data-bs-toggle="modal" data-bs-target="#addModalabouttwo">Add New Description</a> 
-
-                        </div>
-
-
-                        <!----------------------- about three ---------------------->
-
-                        <div class="col-lg-10">
-                            <h3 class="text-center font-weight-light my-4">Nova About Call us</h3>
+                            <h3 class="text-center font-weight-light my-4">Nova Contact</h3>
                             <div class="alert alert-warning" role="alert" style="display:<?php echo isset($showu) ? $showu : "block"; ?>">
                                 Log in to see the Table!
                             </div>
@@ -298,27 +229,29 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                                     <tr>
                                         <th>ID</th>
                                         <th>Title</th>
-                                        <th>Text</th>
-                                        <th>Link</th>
-                                        <th>LinkText</th>
-
+                                        <th>Description</th>
+                                        <th>Icon</th>
+                                        
                                         <th>Update</th>
 
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($DbMngabout->getAllAboutThree()  as $allaboutthree) : ?>
+                                    <?php foreach ($DbMngcontactone->getAllContactOne()  as $all) : ?>
 
                                         <tr>
-                                            <td><?= $allaboutthree->getId() ?></td>
-                                            <td> <?= $allaboutthree->getTitle() ?></td>
-                                            <td> <?= $allaboutthree->getText() ?></td>
-                                            <td> <?= $allaboutthree->getLink() ?></td>
-                                            <td> <?= $allaboutthree->getLinkText() ?></td>
+                                            <td><?= $all->getId() ?></td>
+                                            <td><?= $all->getTitle() ?></td>
+                                            <td><?= $all->getDescription() ?></td>
+                                            <td>
+                                                <div class="icon flex-shrink-0"><i class="bi <?= $all->getIcon() ?>" style="color: #f5cf13;"></i></div>
+                                            </td>
+                                            
+                                           
 
+                                    
 
-
-                                            <td><a class="btn btn-warning " href="#" data-bs-toggle="modal" data-bs-target="#editModalaboutthree" data-id="<?= $allaboutthree->getId() ?>" > Update</a></td>
+                                            <td><a class="btn btn-warning " href="#" data-bs-toggle="modal" data-bs-target="#editModalcontactone" data-id="<?= $all->getId() ?>" data-icon="<?= $all->getIcon() ?>" data-title="<?= $all->getTitle() ?>" data-text="<?= $all->getDescription() ?>"  > Update</a></td>
 
                                         </tr>
                                     <?php endforeach; ?>
@@ -327,7 +260,258 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
                             </table>
                             <!-- add modal by two tags -->
-                            <!-- <a href="#" class="btn btn-primary" id="addp" data-bs-toggle="modal" data-bs-target="#addModal">Add New Product</a> -->
+                            <!-- <a href="#" class="btn btn-primary" id="addp" data-bs-toggle="modal" data-bs-target="#addModalc">Add New Clerk</a> -->
+
+                        </div>
+
+
+                        <!------------------------------------------ contact description section------------------------------------ -->
+                        <div class="col-lg-10">
+                            <h3 class="text-center font-weight-light my-4">Nova Contact Description</h3>
+                            <div class="alert alert-warning" role="alert" style="display:<?php echo isset($showu) ? $showu : "block"; ?>">
+                                Log in to see the Table!
+                            </div>
+                            <table class="table table-hover" style="display:<?php echo isset($showt) ? $showt : "none"; ?>">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                       
+                                        <!-- update or delete -->
+                                       
+                                        <th>Update</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($DbMngcontactone->getAllContactTwo()  as $alltwo) : ?>
+
+                                        <tr>
+                                            <td><?= $alltwo->getId() ?></td>
+                                            <td><?= $alltwo->getName() ?></td>
+                                            <td><?= $alltwo->getText() ?></td>
+
+                                            
+
+                                            <td><a class="btn btn-warning " href="#" data-bs-toggle="modal" data-bs-target="#editModalcontacttwo" data-id="<?= $alltwo->getId() ?>"  data-title="<?= $alltwo->getName() ?>" data-text="<?= $alltwo->getText() ?>"> Update</a></td>
+
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+
+
+                            </table>
+                            <!-- add modal by two tags -->
+                            <!-- <a href="#" class="btn btn-primary" id="addp" data-bs-toggle="modal" data-bs-target="#addModalservicecard">Add New Service Card</a> -->
+
+                        </div>
+
+
+
+
+                        <!------------------------------------------ contact link section------------------------------------ -->
+                        <div class="col-lg-10">
+                            <h3 class="text-center font-weight-light my-4">Nova Contact link</h3>
+                            <div class="alert alert-warning" role="alert" style="display:<?php echo isset($showu) ? $showu : "block"; ?>">
+                                Log in to see the Table!
+                            </div>
+                            <table class="table table-hover" style="display:<?php echo isset($showt) ? $showt : "none"; ?>">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Icon</th>
+                                        <th>Link_Address</th>
+                                       
+                                        <!-- update or delete -->
+                                        <th>Delete</th>
+                                        <th>Update</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($DbMngcontactone->getAllContactThree()  as $allthree) : ?>
+
+                                        <tr>
+                                            <td><?= $allthree->getId() ?></td>
+                                            <td><div class="icon flex-shrink-0"><i class="bi <?= $allthree->getIcon() ?>" style="color: #f5cf13;"></i></div></td>
+                                            <td><?= $allthree->getLinkAddress() ?></td>
+
+                                            <td><?php if ($_SESSION["accesor_level"] == "Admin") : ?>
+                                                    <a onclick="javascript:return confirm('Are You sure you want to delete?');" class="btn btn-warning " href="controller/control-contact.php ? action_contact=deleteIcon & id=<?= $allthree->getId() ?>  "> Delete</a>
+
+                                                <?php endif; ?>
+
+
+                                            </td>
+
+                                            <td><a class="btn btn-warning " href="#" data-bs-toggle="modal" data-bs-target="#editModalcontactthree" data-id="<?= $allthree->getId() ?>"  data-icon="<?= $allthree->getIcon() ?>" data-link="<?= $allthree->getLinkAddress() ?>"> Update</a></td>
+
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+
+
+                            </table>
+                            <!-- add modal by two tags -->
+                            <!-- <a href="#" class="btn btn-primary" id="addp" data-bs-toggle="modal" data-bs-target="#addModalservicecard">Add New Service Card</a> -->
+
+                        </div>
+
+
+                         <!------------------------------------------ contact services------------------------------------ -->
+                         <div class="col-lg-10">
+                            <h3 class="text-center font-weight-light my-4">Nova Services</h3>
+                            <div class="alert alert-warning" role="alert" style="display:<?php echo isset($showu) ? $showu : "block"; ?>">
+                                Log in to see the Table!
+                            </div>
+                            <table class="table table-hover" style="display:<?php echo isset($showt) ? $showt : "none"; ?>">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Services</th>
+                                        <th>links</th>
+                                        
+                                       
+                                        <!-- update or delete -->
+                                        <th>Delete</th>
+                                        <th>Update</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($DbMngcontactone->getAllContactFive()  as $allfi) : ?>
+
+                                        <tr>
+                                            <td><?= $allfi->getId() ?></td>
+                                            
+                                            <td><?= $allfi->getText() ?></td>
+                                            <td><?= $allfi->getLink() ?></td>
+
+                                            <td><?php if ($_SESSION["accesor_level"] == "Admin") : ?>
+                                                    <a onclick="javascript:return confirm('Are You sure you want to delete?');" class="btn btn-warning " href="controller/control-contact.php ? action_contact=deletecontactservice & id=<?= $allfi->getId() ?>  "> Delete</a>
+
+                                                <?php endif; ?>
+
+
+                                            </td>
+
+                                            <td><a class="btn btn-warning " href="#" data-bs-toggle="modal" data-bs-target="#editModalcontactfive" data-id="<?= $allfi->getId() ?>"  data-text="<?= $allfi->getText() ?>"   data-link="<?= $allfi->getLink() ?>"> Update</a></td>
+
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+
+
+                            </table>
+                            <!-- add modal by two tags -->
+                            <a href="#" class="btn btn-primary" id="addp" data-bs-toggle="modal" data-bs-target="#addModalcontactfour">Add New Useful Service</a> 
+
+                        </div>
+
+
+
+                        <!------------------------------------------ contact useful links------------------------------------ -->
+                        <div class="col-lg-10">
+                            <h3 class="text-center font-weight-light my-4">Nova Useful Links</h3>
+                            <div class="alert alert-warning" role="alert" style="display:<?php echo isset($showu) ? $showu : "block"; ?>">
+                                Log in to see the Table!
+                            </div>
+                            <table class="table table-hover" style="display:<?php echo isset($showt) ? $showt : "none"; ?>">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Useful_Link</th>
+                                        <th>Address</th>
+                                        
+                                       
+                                        <!-- update or delete -->
+                                        <th>Delete</th>
+                                        <th>Update</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($DbMngcontactone->getAllContactFour()  as $allf) : ?>
+
+                                        <tr>
+                                            <td><?= $allf->getId() ?></td>
+                                            
+                                            <td><?= $allf->getText() ?></td>
+                                            <td><?= $allf->getLink() ?></td>
+
+                                            <td><?php if ($_SESSION["accesor_level"] == "Admin") : ?>
+                                                    <a onclick="javascript:return confirm('Are You sure you want to delete?');" class="btn btn-warning " href="controller/control-contact.php ? action_contact=deleteusefullink & id=<?= $allf->getId() ?>  "> Delete</a>
+
+                                                <?php endif; ?>
+
+
+                                            </td>
+
+                                            <td><a class="btn btn-warning " href="#" data-bs-toggle="modal" data-bs-target="#editModalcontactfour" data-id="<?= $allf->getId() ?>"  data-text="<?= $allf->getText() ?>" data-link="<?= $allf->getLink() ?>"> Update</a></td>
+
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+
+
+                            </table>
+                            <!-- add modal by two tags -->
+                            <a href="#" class="btn btn-primary" id="addp" data-bs-toggle="modal" data-bs-target="#addModalcontactfour">Add New Useful Link</a> 
+
+                        </div>
+
+
+
+                        <!------------------------------------------ contact form------------------------------------ -->
+                        <div class="col-lg-10">
+                            <h3 class="text-center font-weight-light my-4">Nova Contact Form</h3>
+                            <div class="alert alert-warning" role="alert" style="display:<?php echo isset($showu) ? $showu : "block"; ?>">
+                                Log in to see the Table!
+                            </div>
+                            <table class="table table-hover" style="display:<?php echo isset($showt) ? $showt : "none"; ?>">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Type</th>
+                                        <th>Name</th>
+                                        <th>Placeholder</th>
+                                        
+                                       
+                                        <!-- update or delete -->
+                                        <th>Delete</th>
+                                        <th>Update</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($DbMngcontactone->getAllContactSix()  as $alls) : ?>
+
+                                        <tr>
+                                            <td><?= $alls->getId() ?></td>
+                                            
+                                            <td><?= $alls->getType() ?></td>
+                                            <td><?= $alls->getName() ?></td>
+                                            <td><?= $alls->getPlaceholder() ?></td>
+
+                                            <td><?php if ($_SESSION["accesor_level"] == "Admin") : ?>
+                                                    <a onclick="javascript:return confirm('Are You sure you want to delete?');" class="btn btn-warning " href="controller/control-contact.php ? action_contact=deleteinput & id=<?= $alls->getId() ?>  "> Delete</a>
+
+                                                <?php endif; ?>
+
+
+                                            </td>
+
+                                            <td><a class="btn btn-warning " href="#" data-bs-toggle="modal" data-bs-target="#editModalcontactsix" data-id="<?= $alls->getId() ?>"  data-type="<?= $alls->getType() ?>" data-name="<?= $alls->getName() ?>" data-hold="<?= $alls->getPlaceholder() ?>"> Update</a></td>
+
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+
+
+                            </table>
+                            <!-- add modal by two tags -->
+                            <a href="#" class="btn btn-primary" id="addp" data-bs-toggle="modal" data-bs-target="#addModalcontactsix">Add New Input</a> 
 
                         </div>
 
@@ -335,10 +519,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
 
 
-
                     </div>
-
-
                     <div class="card mb-4">
 
                     </div>
@@ -362,11 +543,11 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
     <!---------------------------------------- modals--------------------------------- -->
     <!-- Add new  modal -->
-    <div class="modal fade" id="addModalabouttwo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addModalc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title">Add new Content</h3>
+                    <h3 class="modal-title">Add new Clerk</h3>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -376,39 +557,45 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
 
 
-                        <form id="form1" method="POST" action="controller/control-about.php" enctype="multipart/form-data">
+                        <form id="form1" method="POST" action="controller/control-team.php" enctype="multipart/form-data">
                             <!-- hidden input -->
-                            <input type="hidden" name="action-abouttwo" value="addabouttwo">
+                            <input type="hidden" name="action-team" value="addclerk">
 
 
                             <!----------------- general inputs--------------------------- -->
                             <div class="mb-3">
 
-                                <input type="text" class="form-control myinput" name="titleone" placeholder="First Title" min="2" />
+                                <input type="text" class="form-control myinput" name="fname" placeholder="First Name" min="2" />
                                 <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['abouttwo_titleone_error']) ? $_SESSION['abouttwo_titleone_error'] : ""; ?></span>
+                                <span style="color:chocolate"><?php echo isset($_SESSION['clerk_fname_error']) ? $_SESSION['clerk_fname_error'] : ""; ?></span>
                             </div>
                             <div class="mb-3">
 
-                                <input type="text" class="form-control myinput" name="titletwo" id="lname" placeholder="Second Title" min="2" />
+                                <input type="text" class="form-control myinput" name="lname" id="lname" placeholder="Last Name" min="2" />
                                 <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset( $_SESSION['abouttwo_titletwo_error']) ?  $_SESSION['abouttwo_titletwo_error']: ""; ?></span>
+                                <span style="color:chocolate"><?php echo isset($_SESSION['clerk_lname_error']) ? $_SESSION['clerk_lname_error'] : ""; ?></span>
                             </div>
 
                             <div class="mb-3">
 
-                                
-
-                            <input type="text" class="form-control myinput" name="text" id="lname" placeholder="Description" min="2" />
+                                <input type="text" class="form-control myinput" name="job" id="job" placeholder="Job Title" min="2" />
                                 <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['abouttwo_text_error']) ? $_SESSION['abouttwo_text_error']: ""; ?></span>
+                                <span style="color:chocolate"><?php echo isset($_SESSION['clerk_job_error']) ? $_SESSION['clerk_job_error'] : ""; ?></span>
+                            </div>
+
+                            <div class="mb-3">
+
+                                <input type="file" class="form-control myinput" id="avatar" name="imagec" />
+
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['clerk_img_error']) ? $_SESSION['clerk_img_error'] : ""; ?></span>
                             </div>
 
 
 
                             <!------------------------- buttons--------------------------- -->
                             <div>
-                                <input type="submit" value="Submit" name="submit2" class="btn btn-success mystyle2" />
+                                <input type="submit" value="Submit" name="submitc" class="btn btn-success mystyle2" />
 
                             </div>
                         </form>
@@ -440,9 +627,9 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
 
 
-                        <form id="form2" method="POST" action="controller/control-portfolio.php" enctype="multipart/form-data">
+                        <form id="form2" method="POST" action="controller/control-team.php" enctype="multipart/form-data">
                             <!-- hidden input -->
-                            <input type="hidden" name="action-portfolio" value="editproduct">
+                            <input type="hidden" name="action-team" value="editclerk">
 
                             <input type="hidden" name="id">
                             <!----------------- general inputs--------------------------- -->
@@ -464,12 +651,11 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                                 <input type="file" class="form-control myinput" id="avatar" name="avatar1" />
 
                                 <input type="hidden" class="form-control myinput" id="avatar" name="avatar2" disabled="disabled" />
-
+                                <img id="imgs" alt="myimg" width=20%>
                                 <!-- error text to show -->
                                 <span style="color:chocolate"><?php echo isset($_SESSION['this_img_error']) ? $_SESSION['this_img_error'] : ""; ?></span>
                             </div>
 
-                            <img id="imgs" src="" alt="myimg" width=20% style="margin-bottom: 2%;">
 
 
                             <!------------------------- buttons--------------------------- -->
@@ -478,7 +664,6 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
                             </div>
                         </form>
-
                     </div>
 
 
