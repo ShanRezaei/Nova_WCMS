@@ -83,6 +83,7 @@ if (!empty($action_abouttwo)) {
             }
 
 
+            //on submit
             if ($isvalidate === true  &&  $titleoneErr == "" && $titletwoErr == "" && $textErr == "") {
 
                 // add new page swipper

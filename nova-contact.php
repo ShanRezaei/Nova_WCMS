@@ -218,19 +218,20 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
     </div> -->
                     </section><!-- End Hero Section -->
 
-                    <div class="row">
+                    <div class="row" style="justify-content: center;">
                         <div class="col-lg-10">
                             <h3 class="text-center font-weight-light my-4">Nova Contact</h3>
                             <div class="alert alert-warning" role="alert" style="display:<?php echo isset($showu) ? $showu : "block"; ?>">
                                 Log in to see the Table!
                             </div>
-                            <table class="table table-hover" style="display:<?php echo isset($showt) ? $showt : "none"; ?>">
+                            <table class="table table-hover" style="display:<?php echo isset($showt) ? $showt : "none"; ?>  margin-left:30%">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
+                                        <th>Icon</th>
                                         <th>Title</th>
                                         <th>Description</th>
-                                        <th>Icon</th>
+                                        
                                         
                                         <th>Update</th>
 
@@ -241,11 +242,12 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
                                         <tr>
                                             <td><?= $all->getId() ?></td>
-                                            <td><?= $all->getTitle() ?></td>
-                                            <td><?= $all->getDescription() ?></td>
                                             <td>
                                                 <div class="icon flex-shrink-0"><i class="bi <?= $all->getIcon() ?>" style="color: #f5cf13;"></i></div>
                                             </td>
+                                            <td><?= $all->getTitle() ?></td>
+                                            <td><?= $all->getDescription() ?></td>
+                                            
                                             
                                            
 
@@ -271,7 +273,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                             <div class="alert alert-warning" role="alert" style="display:<?php echo isset($showu) ? $showu : "block"; ?>">
                                 Log in to see the Table!
                             </div>
-                            <table class="table table-hover" style="display:<?php echo isset($showt) ? $showt : "none"; ?>">
+                            <table class="table table-hover" style="display:<?php echo isset($showt) ? $showt : "none"; ?> margin-left:30%">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -316,7 +318,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                             <div class="alert alert-warning" role="alert" style="display:<?php echo isset($showu) ? $showu : "block"; ?>">
                                 Log in to see the Table!
                             </div>
-                            <table class="table table-hover" style="display:<?php echo isset($showt) ? $showt : "none"; ?>">
+                            <table class="table table-hover" style="display:<?php echo isset($showt) ? $showt : "none"; ?> margin-left:30%">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -365,7 +367,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                             <div class="alert alert-warning" role="alert" style="display:<?php echo isset($showu) ? $showu : "block"; ?>">
                                 Log in to see the Table!
                             </div>
-                            <table class="table table-hover" style="display:<?php echo isset($showt) ? $showt : "none"; ?>">
+                            <table class="table table-hover" style="display:<?php echo isset($showt) ? $showt : "none"; ?> margin-left:30%">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -389,7 +391,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                                             <td><?= $allfi->getLink() ?></td>
 
                                             <td><?php if ($_SESSION["accesor_level"] == "Admin") : ?>
-                                                    <a onclick="javascript:return confirm('Are You sure you want to delete?');" class="btn btn-warning " href="controller/control-contact.php ? action_contact=deletecontactservice & id=<?= $allfi->getId() ?>  "> Delete</a>
+                                                    <a onclick="javascript:return confirm('Are You sure you want to delete?');" class="btn btn-warning " href="controller/control-contact.php ? action_contactfive=deletecontactservice & id=<?= $allfi->getId() ?>  "> Delete</a>
 
                                                 <?php endif; ?>
 
@@ -405,7 +407,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
                             </table>
                             <!-- add modal by two tags -->
-                            <a href="#" class="btn btn-primary" id="addp" data-bs-toggle="modal" data-bs-target="#addModalcontactfour">Add New Useful Service</a> 
+                            <a href="#" class="btn btn-primary" id="addp" data-bs-toggle="modal" data-bs-target="#addModalcontactfive">Add New Useful Service</a> 
 
                         </div>
 
@@ -417,7 +419,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                             <div class="alert alert-warning" role="alert" style="display:<?php echo isset($showu) ? $showu : "block"; ?>">
                                 Log in to see the Table!
                             </div>
-                            <table class="table table-hover" style="display:<?php echo isset($showt) ? $showt : "none"; ?>">
+                            <table class="table table-hover" style="display:<?php echo isset($showt) ? $showt : "none"; ?> margin-left:30%">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -441,7 +443,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                                             <td><?= $allf->getLink() ?></td>
 
                                             <td><?php if ($_SESSION["accesor_level"] == "Admin") : ?>
-                                                    <a onclick="javascript:return confirm('Are You sure you want to delete?');" class="btn btn-warning " href="controller/control-contact.php ? action_contact=deleteusefullink & id=<?= $allf->getId() ?>  "> Delete</a>
+                                                    <a onclick="javascript:return confirm('Are You sure you want to delete?');" class="btn btn-warning " href="controller/control-contact.php ? action_contactfour=deleteusefullink & id=<?= $allf->getId() ?>  "> Delete</a>
 
                                                 <?php endif; ?>
 
@@ -469,7 +471,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                             <div class="alert alert-warning" role="alert" style="display:<?php echo isset($showu) ? $showu : "block"; ?>">
                                 Log in to see the Table!
                             </div>
-                            <table class="table table-hover" style="display:<?php echo isset($showt) ? $showt : "none"; ?>">
+                            <table class="table table-hover" style="display:<?php echo isset($showt) ? $showt : "none"; ?> margin-left:30%">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -495,7 +497,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                                             <td><?= $alls->getPlaceholder() ?></td>
 
                                             <td><?php if ($_SESSION["accesor_level"] == "Admin") : ?>
-                                                    <a onclick="javascript:return confirm('Are You sure you want to delete?');" class="btn btn-warning " href="controller/control-contact.php ? action_contact=deleteinput & id=<?= $alls->getId() ?>  "> Delete</a>
+                                                    <a onclick="javascript:return confirm('Are You sure you want to delete?');" class="btn btn-warning " href="controller/control-contact.php ? action_contactsix=deleteinput & id=<?= $alls->getId() ?>  "> Delete</a>
 
                                                 <?php endif; ?>
 
@@ -542,12 +544,14 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
 
     <!---------------------------------------- modals--------------------------------- -->
-    <!-- Add new  modal -->
-    <div class="modal fade" id="addModalc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+
+    <!-- Add new  modal for section four-->
+    <div class="modal fade" id="addModalcontactfour" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title">Add new Clerk</h3>
+                    <h3 class="modal-title">Add new Service</h3>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -557,39 +561,26 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
 
 
-                        <form id="form1" method="POST" action="controller/control-team.php" enctype="multipart/form-data">
+                        <form id="form1" method="POST" action="controller/control-contact.php" enctype="multipart/form-data">
                             <!-- hidden input -->
-                            <input type="hidden" name="action-team" value="addclerk">
+                            <input type="hidden" name="action-contact" value="addfour">
 
 
                             <!----------------- general inputs--------------------------- -->
                             <div class="mb-3">
 
-                                <input type="text" class="form-control myinput" name="fname" placeholder="First Name" min="2" />
+                                <input type="text" class="form-control myinput" name="linkname" placeholder="Name of the Link" min="2" />
                                 <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['clerk_fname_error']) ? $_SESSION['clerk_fname_error'] : ""; ?></span>
+                                <span style="color:chocolate"><?php echo isset($_SESSION['contact_four_text_error'] ) ? $_SESSION['contact_four_text_error']  : ""; ?></span>
                             </div>
                             <div class="mb-3">
 
-                                <input type="text" class="form-control myinput" name="lname" id="lname" placeholder="Last Name" min="2" />
+                                <input type="text" class="form-control myinput" name="addressname" id="lname" placeholder="Address of the link" min="2" />
                                 <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['clerk_lname_error']) ? $_SESSION['clerk_lname_error'] : ""; ?></span>
+                                <span style="color:chocolate"><?php echo isset( $_SESSION['contact_four_address_error'] ) ?  $_SESSION['contact_four_address_error']  : ""; ?></span>
                             </div>
 
-                            <div class="mb-3">
-
-                                <input type="text" class="form-control myinput" name="job" id="job" placeholder="Job Title" min="2" />
-                                <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['clerk_job_error']) ? $_SESSION['clerk_job_error'] : ""; ?></span>
-                            </div>
-
-                            <div class="mb-3">
-
-                                <input type="file" class="form-control myinput" id="avatar" name="imagec" />
-
-                                <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['clerk_img_error']) ? $_SESSION['clerk_img_error'] : ""; ?></span>
-                            </div>
+                            
 
 
 
@@ -608,6 +599,137 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
         </div>
 
     </div>
+
+
+
+    
+    <!-- Add new  modal for section five-->
+    <div class="modal fade" id="addModalcontactfive" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Add new Link</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- create our form to do the registration -->
+                    <!-- --------------------main body of the form---------------- -->
+                    <div class="container" id="mymain">
+
+
+
+                        <form id="form1" method="POST" action="controller/control-contact.php" enctype="multipart/form-data">
+                            <!-- hidden input -->
+                            <input type="hidden" name="action-contact" value="addfive">
+
+
+                            <!----------------- general inputs--------------------------- -->
+                            <div class="mb-3">
+
+                                <input type="text" class="form-control myinput" name="linknamef" placeholder="Name of the Link" min="2" />
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['contact_five_text_error'] ) ? $_SESSION['contact_five_text_error']  : ""; ?></span>
+                            </div>
+                            <div class="mb-3">
+
+                                <input type="text" class="form-control myinput" name="addressnamef" id="lname" placeholder="Address of the link" min="2" />
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['contact_five_address_error']) ? $_SESSION['contact_five_address_error'] : ""; ?></span>
+                            </div>
+
+                            
+
+
+
+                            <!------------------------- buttons--------------------------- -->
+                            <div>
+                                <input type="submit" value="Submit" name="submitc" class="btn btn-success mystyle2" />
+
+                            </div>
+                        </form>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+     <!-- Add new  modal for section six-->
+     <div class="modal fade" id="addModalcontactsix" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Add new Input</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- create our form to do the registration -->
+                    <!-- --------------------main body of the form---------------- -->
+                    <div class="container" id="mymain">
+
+
+
+                        <form id="form1" method="POST" action="controller/control-contact.php" enctype="multipart/form-data">
+                            <!-- hidden input -->
+                            <input type="hidden" name="action-contact" value="addsix">
+
+
+                            <!----------------- general inputs--------------------------- -->
+
+                            <div class="mb-3">
+
+                                <!-- add dropdowns -->
+                                <label class="form-label select-label">Input Type:</label>
+                                <select id="cars" name="iconsix" class="select">
+                                    <option value=""></option>
+                                    <option value="text">Text</option>
+                                    <option value="email">Email</option>
+                                    <option value="password">Password</option>
+                                    <option value="number">Number</option>
+                                </select>
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['contact_six_type_error']) ? $_SESSION['contact_six_type_error'] : ""; ?></span>
+                            </div>
+
+                            <div class="mb-3">
+
+                                <input type="text" class="form-control myinput" name="inputname" placeholder="Your Input name" min="2" />
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['contact_six_name_error'] ) ? $_SESSION['contact_six_name_error']  : ""; ?></span>
+                            </div>
+                            <div class="mb-3">
+
+                                <input type="text" class="form-control myinput" name="inputholder" id="lname" placeholder="PlaceHolder Content" min="2" />
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['contact_six_place_error']) ? $_SESSION['contact_six_place_error'] : ""; ?></span>
+                            </div>
+
+                            
+
+
+
+                            <!------------------------- buttons--------------------------- -->
+                            <div>
+                                <input type="submit" value="Submit" name="submitc" class="btn btn-success mystyle2" />
+
+                            </div>
+                        </form>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
 
 
 

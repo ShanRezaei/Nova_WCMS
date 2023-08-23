@@ -209,7 +209,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
     </div> -->
                     </section><!-- End Hero Section -->
 
-                    <div class="row">
+                    <div class="row" style="justify-content: center;">
                         <div class="col-lg-10">
                             <h3 class="text-center font-weight-light my-4">Nova Team</h3>
                             <div class="alert alert-warning" role="alert" style="display:<?php echo isset($showu) ? $showu : "block"; ?>">

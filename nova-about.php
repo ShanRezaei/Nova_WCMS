@@ -192,7 +192,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                     </ol>
                     
 
-                    <div class="row">
+                    <div class="row" style="justify-content: center;">
 
                      
                           <!-- --------------------about one ------------>

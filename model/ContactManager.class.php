@@ -70,9 +70,32 @@ class ContactManager extends DbConnector{
 
     //delete
 
+    public function deleteLink(int $id){
+    
+        // query to delete new product db
+        $query=$this->db->prepare("DELETE FROM `contactthree` WHERE `id`=?");
+        $query->execute(array( $id));
+        
+        $result = $query->fetchAll();
+        return $result;
+    
+    }
+
+
+
 
     //rowcount
 
+    public function countLink(){
+    
+        // query to count product db
+        $query=$this->db->prepare("SELECT * FROM `contactthree`");
+        $query->execute();
+        
+       
+        return $query;
+    
+    }
 
     //update
 
@@ -97,15 +120,57 @@ class ContactManager extends DbConnector{
 
 
     //add
+    public function addContactFour(ContactFour $four){
+    
+        // query to add new product db
+        $query=$this->db->prepare("INSERT INTO `contactfour`( `text`, `link`) VALUES (?,?)");
+        $query->execute(array(
+            $four->getText(),
+            $four->getLink(),
+            
+        
+        ));
+        
+        $result = $query->fetchAll();
+        return $result;
+    
+    }
+
+
+
+
 
 
     //delete
+    public function deleteFour(int $id){
+    
+        // query to delete new product db
+        $query=$this->db->prepare("DELETE FROM `contactfour` WHERE `id`=?");
+        $query->execute(array( $id));
+        
+        $result = $query->fetchAll();
+        return $result;
+    
+    }
+
 
 
     //rowcount
+    public function countFour(){
+    
+        // query to count product db
+        $query=$this->db->prepare("SELECT * FROM `contactFour`");
+        $query->execute();
+        
+       
+        return $query;
+    
+    }
 
 
     //update
+
+
 
 
     /////////////////////////// methods for contactFive section///////////////////////
@@ -129,15 +194,60 @@ class ContactManager extends DbConnector{
 
 
     //add
+    public function addContactFive(ContactFive $five){
+    
+        // query to add new product db
+        $query=$this->db->prepare("INSERT INTO `contactfive`( `text`, `link`) VALUES (?,?)");
+        $query->execute(array(
+            $five->getText(),
+            $five->getLink(),
+            
+        
+        ));
+        
+        $result = $query->fetchAll();
+        return $result;
+    
+    }
+
+
+
+
 
 
     //delete
+    public function deleteFive(int $id){
+    
+        // query to delete new product db
+        $query=$this->db->prepare("DELETE FROM `contactfive` WHERE `id`=?");
+        $query->execute(array( $id));
+        
+        $result = $query->fetchAll();
+        return $result;
+    
+    }
+
 
 
     //rowcount
+    public function countFive(){
+    
+        // query to count product db
+        $query=$this->db->prepare("SELECT * FROM `contactfive`");
+        $query->execute();
+        
+       
+        return $query;
+    
+    }
 
 
     //update
+
+
+
+
+
 
 /////////////////////////// methods for contactsix section///////////////////////
     //get all content
@@ -160,15 +270,59 @@ class ContactManager extends DbConnector{
 
 
     //add
+    public function addContactSix(ContactSix $six){
+    
+        // query to add new product db
+        $query=$this->db->prepare("INSERT INTO `contactsix`( `type`, `name`, `placeholder`) VALUES (?,?,?)");
+        $query->execute(array(
+            $six->getType(),
+            $six->getName(),
+            $six->getPlaceholder(),
+            
+        
+        ));
+        
+        $result = $query->fetchAll();
+        return $result;
+    
+    }
+
+
+
+
 
 
     //delete
 
+    public function deleteSix(int $id){
+    
+        // query to delete new product db
+        $query=$this->db->prepare("DELETE FROM `contactsix` WHERE `id`=?");
+        $query->execute(array( $id));
+        
+        $result = $query->fetchAll();
+        return $result;
+    
+    }
+
+
 
     //rowcount
+    public function countSix(){
+    
+        // query to count product db
+        $query=$this->db->prepare("SELECT * FROM `contactsix`");
+        $query->execute();
+        
+       
+        return $query;
+    
+    }
 
 
     //update
+
+
 
 
 

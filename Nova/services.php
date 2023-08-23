@@ -4,6 +4,7 @@ include "../head.inc.php";
 $DbMngs = new ServiceManager();
 $DbMngscard = new ServiceCardManager();
 $DbMngcontact = new ContactManager();
+$DbMnghome = new HomeManager();
 
 ?>
 
@@ -58,7 +59,9 @@ $DbMngcontact = new ContactManager();
       <a href="index.html" class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1 class="d-flex align-items-center">Nova</h1>
+        <?php foreach ($DbMnghome->getAllHomeOne()  as $allh) : ?>
+          <h1 class="d-flex align-items-center"><?= $allh->getLogo() ?></h1>
+        <?php endforeach; ?>
       </a>
 
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
