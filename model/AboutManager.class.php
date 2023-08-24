@@ -27,6 +27,20 @@ class AboutManager extends DbConnector
 
 
     //update
+    
+    public function updateAboutOne(AboutOne $aboutone){
+        $query1 = $this->db->prepare("UPDATE `aboutone` SET `img`=? WHERE `id`=?;") ;
+        $query1->execute(array(
+            $aboutone->getImg(),
+            $aboutone->getId(),
+             
+    
+        ));
+    
+        $result1 = $query1->fetchAll();
+        return $result1;
+    
+    }
 
 
 
@@ -94,6 +108,24 @@ class AboutManager extends DbConnector
 
     
     // update
+    public function updateAboutTwo(AboutTwo $abouttwo){
+        $query1 = $this->db->prepare("UPDATE `abouttwo` SET `titleone`=?,`titletwo`=?,`text`=?  WHERE `id`=?;") ;
+        $query1->execute(array(
+            $abouttwo->getTitleOne(),
+            $abouttwo->getTitleTwo(),
+            $abouttwo->getText(),
+           
+            
+            $abouttwo->getId(),
+             
+    
+        ));
+    
+        $result1 = $query1->fetchAll();
+        return $result1;
+    
+    }
+
 
 
 
@@ -117,6 +149,24 @@ class AboutManager extends DbConnector
 
 
     // update
+    public function updateAboutThree(AboutThree $aboutthree){
+        $query1 = $this->db->prepare("UPDATE `aboutthree` SET `title`=?,`text`=?,`link`=?,`linktext`=? WHERE `id`=?") ;
+        $query1->execute(array(
+            $aboutthree->getTitle(),
+            $aboutthree->getText(),
+            $aboutthree->getLink(),
+            $aboutthree->getLinkText(),
+            
+            $aboutthree->getId(),
+             
+    
+        ));
+    
+        $result1 = $query1->fetchAll();
+        return $result1;
+    
+    }
+
 
 
 

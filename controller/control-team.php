@@ -118,7 +118,7 @@ if (!empty($action_c)) {
 
                 //make an address for saving img
 
-                $countclerk = $DbMgrclerk->countClerk()->rowCount();
+                $countclerk =( $DbMgrclerk->countClerk()->rowCount())+1;
 
                 $image_address = "Nova/assets/img/team/" . "team-" . $countclerk . "." . $image_format;
 

@@ -27,6 +27,8 @@ class ContactManager extends DbConnector{
 
     //update
 
+    
+
 /////////////////////////// methods for contactTwo section///////////////////////
     //get all content
     public function getAllContactTwo()
@@ -47,6 +49,23 @@ class ContactManager extends DbConnector{
 
 
     //update
+
+    public function updateContactTwo(ContactTwo $contacttwo){
+        $query1 = $this->db->prepare("UPDATE `contacttwo` SET `name`=?,`text`=? WHERE `id`=?;") ;
+        $query1->execute(array(
+            $contacttwo->getName(),
+            $contacttwo->getText(),
+           
+            $contacttwo->getId(),
+             
+    
+        ));
+    
+        $result1 = $query1->fetchAll();
+        return $result1;
+    
+    }
+
 
 
 
@@ -169,6 +188,21 @@ class ContactManager extends DbConnector{
 
 
     //update
+    public function updateContactFour(ContactFour $contactfour){
+        $query1 = $this->db->prepare("UPDATE `contactfour` SET `text`=?,`link`=? WHERE `id`=?;") ;
+        $query1->execute(array(
+            
+            $contactfour->getText(),
+            $contactfour->getLink(),
+            $contactfour->getId(),
+             
+    
+        ));
+    
+        $result1 = $query1->fetchAll();
+        return $result1;
+    
+    }
 
 
 
@@ -243,6 +277,22 @@ class ContactManager extends DbConnector{
 
 
     //update
+    public function updateContactFive(ContactFive $contactfive){
+        $query1 = $this->db->prepare("UPDATE `contactfive` SET `text`=?,`link`=? WHERE `id`=?;") ;
+        $query1->execute(array(
+            
+            $contactfive->getText(),
+            $contactfive->getLink(),
+            $contactfive->getId(),
+             
+    
+        ));
+    
+        $result1 = $query1->fetchAll();
+        return $result1;
+    
+    }
+
 
 
 

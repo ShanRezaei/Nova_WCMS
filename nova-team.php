@@ -215,7 +215,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                             <div class="alert alert-warning" role="alert" style="display:<?php echo isset($showu) ? $showu : "block"; ?>">
                                 Log in to see the Table!
                             </div>
-                            <table class="table table-hover" style="display:<?php echo isset($showt) ? $showt : "none"; ?>">
+                            <table class="table table-hover" style="display:<?php echo isset($showt) ? $showt : "none"; ?> margin-left:30%">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -233,7 +233,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
                                         <tr>
                                             <td><?= $all->getId() ?></td>
-                                            <td> <img src="Nova/<?= $all->getImg() ?>" alt="myimg" width=10%></td>
+                                            <td> <img src="Nova/<?= $all->getImg() ?>" alt="myimg" width=8%></td>
                                             <td><?= $all->getfirstName() ?></td>
                                             <td><?= $all->getlastName() ?></td>
                                             <td><?= $all->getjob() ?></td>
@@ -255,7 +255,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
                             </table>
                             <!-- add modal by two tags -->
-                            <a href="#" class="btn btn-primary" id="addp" data-bs-toggle="modal" data-bs-target="#addModalc">Add New Clerk</a>
+                            <a href="#" class="btn btn-primary" id="addp" data-bs-toggle="modal" data-bs-target="#addModalc" style="margin-bottom: 3%;">Add New Clerk</a>
 
                         </div>
                     </div>
@@ -390,7 +390,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                                 <input type="file" class="form-control myinput" id="avatar" name="avatar1" />
 
                                 <input type="hidden" class="form-control myinput" id="avatar" name="avatar2" disabled="disabled" />
-                                <img id="imgs" alt="myimg" width=20%>
+                                <img id="imgs" alt="myimg" width=20% style="margin-top: 3%;">
                                 <!-- error text to show -->
                                 <span style="color:chocolate"><?php echo isset($_SESSION['this_img_error']) ? $_SESSION['this_img_error'] : ""; ?></span>
                             </div>

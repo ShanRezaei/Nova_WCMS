@@ -42,7 +42,7 @@ if (isset( $_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
                                     <div class="alert alert-warning" role="alert" style="display:<?php echo isset($showl) ? $showl : "none"; ?>">
                                 you have loged in already!
-                                <div class="small"><a href="index.php">Back to the main page!</a></div>
+                                <!-- <div class="small"><a href="index.php">Back to the main page!</a></div> -->
                             </div>
 
 

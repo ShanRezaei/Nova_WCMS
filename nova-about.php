@@ -201,7 +201,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                             <div class="alert alert-warning" role="alert" style="display:<?php echo isset($showu) ? $showu : "block"; ?>">
                                 Log in to see the Table!
                             </div>
-                            <table class="table table-hover" style="display:<?php echo isset($showt) ? $showt : "none"; ?>">
+                            <table class="table table-hover" style="display:<?php echo isset($showt) ? $showt : "none"; ?> margin-left:30%" >
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -216,11 +216,11 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
                                         <tr>
                                             <td><?= $allaboutone->getId() ?></td>
-                                            <td> <img src="Nova/<?= $allaboutone->getImg() ?>" alt="myimg" width=5%></td>
+                                            <td> <img src="Nova/<?= $allaboutone->getImg() ?>" alt="myimg" width=6%></td>
 
 
 
-                                            <td><a class="btn btn-warning " href="#" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $allaboutone->getId() ?>" data-img="<?= $allaboutone->getImg() ?>"> Update</a></td>
+                                            <td><a class="btn btn-warning " href="#" data-bs-toggle="modal" data-bs-target="#editModalaboutone" data-id="<?= $allaboutone->getId() ?>" data-img="<?= $allaboutone->getImg() ?>"> Update</a></td>
 
                                         </tr>
                                     <?php endforeach; ?>
@@ -318,7 +318,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
 
 
-                                            <td><a class="btn btn-warning " href="#" data-bs-toggle="modal" data-bs-target="#editModalaboutthree" data-id="<?= $allaboutthree->getId() ?>" > Update</a></td>
+                                            <td><a class="btn btn-warning " href="#" data-bs-toggle="modal" data-bs-target="#editModalaboutthree" data-linktext="<?= $allaboutthree->getLinkText() ?>" data-link="<?= $allaboutthree->getLink() ?>" data-text="<?= $allaboutthree->getText() ?>" data-id="<?= $allaboutthree->getId() ?>" data-title="<?= $allaboutthree->getTitle() ?>" > Update</a></td>
 
                                         </tr>
                                     <?php endforeach; ?>
@@ -424,9 +424,11 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
 
 
-    <!-- edit modal -->
+    <!-------------------------------- ----------------edit modal --------------------------------------------->
 
-    <div class="modal fade" id="editModal">
+    <!-- --------------------------table three-------------------------- -->
+
+    <div class="modal fade" id="editModalaboutthree">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -440,38 +442,169 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
 
 
-                        <form id="form2" method="POST" action="controller/control-portfolio.php" enctype="multipart/form-data">
+                        <form id="form2" method="POST" action="controller/control-about.php" enctype="multipart/form-data">
                             <!-- hidden input -->
-                            <input type="hidden" name="action-portfolio" value="editproduct">
+                            <input type="hidden" name="action-aboutthree" value="editaboutthree">
 
                             <input type="hidden" name="id">
                             <!----------------- general inputs--------------------------- -->
                             <div class="mb-3">
+                            <label  for="title"style="color: #146c43; font-weight:600" >Title:</label>
 
-                                <input type="text" class="form-control myinput" name="name1" min="2" />
+                                <input type="text" class="form-control myinput" name="title" min="2" id="title" />
                                 <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['this_name_error']) ? $_SESSION['this_name_error'] : ""; ?></span>
+                                <span style="color:chocolate"><?php echo isset($_SESSION['aboutthree_title_error']) ? $_SESSION['aboutthree_title_error'] : ""; ?></span>
                             </div>
                             <div class="mb-3">
+                            <label  for="lname"style="color: #146c43; font-weight:600" >Description:</label>
 
-                                <input type="text" class="form-control myinput" name="description1" id="lname" min="2" />
+                                <input type="text" class="form-control myinput" name="text" id="lname" min="2" />
                                 <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['this_text_error']) ? $_SESSION['this_text_error'] : ""; ?></span>
+                                <span style="color:chocolate"><?php echo isset($_SESSION['aboutthree_text_error']) ? $_SESSION['aboutthree_text_error'] : ""; ?></span>
                             </div>
 
                             <div class="mb-3">
+                            <label  for="avatar"style="color: #146c43; font-weight:600" >Link:</label>
 
-                                <input type="file" class="form-control myinput" id="avatar" name="avatar1" />
-
-                                <input type="hidden" class="form-control myinput" id="avatar" name="avatar2" disabled="disabled" />
+                                <input type="text" class="form-control myinput" id="avatar" name="link" />
 
                                 <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['this_img_error']) ? $_SESSION['this_img_error'] : ""; ?></span>
+                                <span style="color:chocolate"><?php echo isset($_SESSION['aboutthree_link_error']) ? $_SESSION['aboutthree_link_error'] : ""; ?></span>
                             </div>
 
-                            <img id="imgs" src="" alt="myimg" width=20% style="margin-bottom: 2%;">
+                            <div class="mb-3">
+                            <label  for="avatar1"style="color: #146c43; font-weight:600" >Link Text:</label>
+
+                                <input type="text" class="form-control myinput" id="avatar1" name="linktext" />
+
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['aboutthree_linktext_error']) ? $_SESSION['aboutthree_linktext_error'] : ""; ?></span>
+                            </div>
 
 
+                            <!------------------------- buttons--------------------------- -->
+                            <div>
+                                <input type="submit" value="Update" name="submit3" class="btn btn-success mystyle2" />
+
+                            </div>
+                        </form>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <!-- ----------------------------------table two-------------------------- -->
+
+    <div class="modal fade" id="editModalabouttwo">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Edit Content</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- create our form to do the registration -->
+                    <!-- --------------------main body of the form---------------- -->
+                    <div class="container" id="mymain">
+
+
+
+                        <form id="form2" method="POST" action="controller/control-about.php" enctype="multipart/form-data">
+                            <!-- hidden input -->
+                            <input type="hidden" name="action-abouttwo" value="editabouttwo">
+
+                            <input type="hidden" name="id">
+                            <!----------------- general inputs--------------------------- -->
+                            <div class="mb-3">
+                            <label  for="title"style="color: #146c43; font-weight:600" >First Title:</label>
+
+                                <input type="text" class="form-control myinput" name="ftitle" min="2" id="title" />
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['abouttwo_title1_error']) ? $_SESSION['abouttwo_title1_error'] : ""; ?></span>
+                            </div>
+                            <div class="mb-3">
+                            <label  for="lname"style="color: #146c43; font-weight:600" >Second Title:</label>
+
+                                <input type="text" class="form-control myinput" name="stitle" id="lname" min="2" />
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['abouttwo_title2_error']) ? $_SESSION['abouttwo_title2_error'] : ""; ?></span>
+                            </div>
+
+                            <div class="mb-3">
+                            <label  for="avatar"style="color: #146c43; font-weight:600" >Description:</label>
+
+                                <input type="text" class="form-control myinput" id="avatar" name="text" />
+
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['abouttwo_text2_error']) ? $_SESSION['abouttwo_text2_error'] : ""; ?></span>
+                            </div>
+
+                            
+                            <!------------------------- buttons--------------------------- -->
+                            <div>
+                                <input type="submit" value="Update" name="submit3" class="btn btn-success mystyle2" />
+
+                            </div>
+                        </form>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- ----------------------------------table One-------------------------- -->
+
+    <div class="modal fade" id="editModalaboutone">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Edit Content</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- create our form to do the registration -->
+                    <!-- --------------------main body of the form---------------- -->
+                    <div class="container" id="mymain">
+
+
+
+                        <form id="form2" method="POST" action="controller/control-about.php" enctype="multipart/form-data">
+                            <!-- hidden input -->
+                            <input type="hidden" name="action-abouttwo" value="editaboutone">
+
+                            <input type="hidden" name="id">
+                            <!----------------- general inputs--------------------------- -->
+                            
+                            
+
+                            <div class="mb-3">
+                            <label  for="avatar"style="color: #146c43; font-weight:600" >Image:</label>
+
+                                <input type="file" class="form-control myinput" id="avatar" name="avatar" />
+
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['abouttwo_text2_error']) ? $_SESSION['abouttwo_text2_error'] : ""; ?></span>
+                            </div>
+
+                            <!-- with jquery we gave the value to the img src part -->
+                            <img id="imgs" src="" alt="myimg" width=20%   style="margin-bottom: 2%;" >
+
+                            <input type="hidden" name="imglink">
+                            
                             <!------------------------- buttons--------------------------- -->
                             <div>
                                 <input type="submit" value="Update" name="submit3" class="btn btn-success mystyle2" />
@@ -509,7 +642,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
     <script src="js/scripts.js"></script>
     <!-- jquery link -->
     <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/custom.js"></script>
+    <script type="text/javascript" src="js/about.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script src="assets/demo/chart-area-demo.js"></script>
     <script src="assets/demo/chart-bar-demo.js"></script>

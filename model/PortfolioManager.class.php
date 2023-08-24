@@ -71,9 +71,39 @@ public function countProduct(){
 
 }
 
-// update
+// update one
+public function updatePortfolio(Portfolio $portfolio){
+    $query1 = $this->db->prepare("UPDATE `portfolio` SET `img`=?,`name`=?,`text`=? WHERE `id`=?;") ;
+    $query1->execute(array(
+        $portfolio->getImg(),
+        $portfolio->getName(),
+        $portfolio->getText(),
+        $portfolio->getId(),
+         
 
+    ));
 
+    $result1 = $query1->fetchAll();
+    return $result1;
+
+}
+
+//update two
+public function updatePortfoliotwo(Portfolio $portfolio){
+    $query1 = $this->db->prepare("UPDATE `portfolio` SET `name`=?,`text`=? WHERE `id`=?;") ;
+    $query1->execute(array(
+       
+        $portfolio->getName(),
+        $portfolio->getText(),
+        $portfolio->getId(),
+         
+
+    ));
+
+    $result1 = $query1->fetchAll();
+    return $result1;
+
+}
 
 
 

@@ -252,7 +252,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
                             </table>
                             <!-- add modal by two tags -->
-                            <a href="#" class="btn btn-primary" id="addp" data-bs-toggle="modal" data-bs-target="#addModal">Add New Product</a>
+                            <a href="#" class="btn btn-primary" id="addp" data-bs-toggle="modal" data-bs-target="#addModal" style="margin-bottom: 3%;">Add New Product</a>
 
                             </div>
                         </div>
@@ -361,32 +361,37 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                             <input type="hidden" name="action-portfolio" value="editproduct">
 
                             <input type="hidden" name="id">
+
                             <!----------------- general inputs--------------------------- -->
                             <div class="mb-3">
+                            <label  for="name"style="color: #146c43; font-weight:600" >Name:</label>
 
-                                <input type="text" class="form-control myinput" name="name1" min="2" />
+                                <input type="text" class="form-control myinput" name="name1" min="2" id="name" />
                                 <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['this_name_error']) ? $_SESSION['this_name_error'] : ""; ?></span>
+                                <span style="color:chocolate"><?php echo isset($_SESSION['this_name1_error']) ? $_SESSION['this_name1_error'] : ""; ?></span>
                             </div>
                             <div class="mb-3">
 
+                            <label  for="lname"style="color: #146c43; font-weight:600" >Description:</label>
                                 <input type="text" class="form-control myinput" name="description1" id="lname" min="2" />
                                 <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['this_text_error']) ? $_SESSION['this_text_error'] : ""; ?></span>
+                                <span style="color:chocolate"><?php echo isset($_SESSION['this_text1_error']) ? $_SESSION['this_text1_error'] : ""; ?></span>
                             </div>
 
                             <div class="mb-3">
+                            <label  for="avatar"style="color: #146c43; font-weight:600" >Image:</label>
 
                                 <input type="file" class="form-control myinput" id="avatar" name="avatar1" />
 
                                 <input type="hidden" class="form-control myinput" id="avatar" name="avatar2" disabled="disabled" />
                                 
                                 <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['this_img_error']) ? $_SESSION['this_img_error'] : ""; ?></span>
+                                <span style="color:chocolate"><?php echo isset($_SESSION['this_img1_error']) ? $_SESSION['this_img1_error'] : ""; ?></span>
                             </div>
 
                             <img id="imgs" src="" alt="myimg" width=20%   style="margin-bottom: 2%;" >
 
+                            <input type="hidden" name="imglink">
 
                             <!------------------------- buttons--------------------------- -->
                             <div>

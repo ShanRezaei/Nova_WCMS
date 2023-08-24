@@ -236,10 +236,10 @@ $DbMnghome = new HomeManager();
               <div class="post-img"><img src="<?= $allth->getImg() ?>" class="img-fluid" alt=""></div>
               <div class="meta">
                 <!-- <span class="post-date">Tue, December 12</span> -->
-                <span class="post-author"> <?= $allth->getFirstName() ?> <?= $allth->getLastName() ?></span>
+                <span class="post-author">| <?= $allth->getFirstName() ?> <?= $allth->getLastName() ?></span>
               </div>
               <h3 class="post-title"><?= $allth->getTitle() ?></h3>
-              <p><?= $allth->getText() ?></p>
+              <p><?= $allth->getText() ?>.</p>
               <!-- <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a> -->
             </div>
           </div>

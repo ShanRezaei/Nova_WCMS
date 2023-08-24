@@ -26,6 +26,20 @@ class HomeManager extends DbConnector{
 
 
     // update
+    public function updateHomeOne(HomeOne $homeone){
+        $query1 = $this->db->prepare("UPDATE `homeone` SET `text`=? WHERE `id`=?;") ;
+        $query1->execute(array(
+            
+            $homeone->getLogo(),
+            $homeone->getId(),
+             
+    
+        ));
+    
+        $result1 = $query1->fetchAll();
+        return $result1;
+    
+    }
 
 
 
@@ -50,7 +64,23 @@ class HomeManager extends DbConnector{
 
 
     // update
-
+    public function updateHomeTwo(HomeTwo $hometwo){
+        $query1 = $this->db->prepare("UPDATE `hometwo` SET `title`=?,`text`=?,`buttontitle`=?,`buttonlink`=?,`videolink`=? WHERE `id`=?") ;
+        $query1->execute(array(
+            $hometwo->getTitle(),
+            $hometwo->getText(),
+            $hometwo->getButtonTitle(),
+            $hometwo->getButtonLink(),
+            $hometwo->getVideoLink(),
+            $hometwo->getId(),
+             
+    
+        ));
+    
+        $result1 = $query1->fetchAll();
+        return $result1;
+    
+    }
 
 
 

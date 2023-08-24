@@ -329,7 +329,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
                             </table>
                             <!-- add modal by two tags -->
-                            <a href="#" class="btn btn-primary" id="addp" data-bs-toggle="modal" data-bs-target="#addModalservicecard">Add New Service Card</a>
+                            <a href="#" class="btn btn-primary" id="addp" data-bs-toggle="modal" data-bs-target="#addModalservicecard" style="margin-bottom: 3%;" >Add New Service Card</a>
 
                         </div>
                     </div>

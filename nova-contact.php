@@ -513,7 +513,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
                             </table>
                             <!-- add modal by two tags -->
-                            <a href="#" class="btn btn-primary" id="addp" data-bs-toggle="modal" data-bs-target="#addModalcontactsix">Add New Input</a> 
+                            <a href="#" class="btn btn-primary" id="addp" data-bs-toggle="modal" data-bs-target="#addModalcontactsix" style="margin-bottom: 3%;">Add New Input</a> 
 
                         </div>
 
@@ -603,7 +603,8 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
 
     
-    <!-- Add new  modal for section five-->
+    <!-------------------------------- Add new  modal for section five------------------------>
+
     <div class="modal fade" id="addModalcontactfive" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -658,7 +659,8 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
     </div>
 
 
-     <!-- Add new  modal for section six-->
+     <!------------------------------------- Add new  modal for section six------------------------->
+
      <div class="modal fade" id="addModalcontactsix" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -733,9 +735,10 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
 
 
+    <!-- -------------------------------------modal for update contact two------------------------------- -->
     <!-- edit modal -->
 
-    <div class="modal fade" id="editModal">
+    <div class="modal fade" id="editModalcontacttwo">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -749,34 +752,145 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
 
 
-                        <form id="form2" method="POST" action="controller/control-team.php" enctype="multipart/form-data">
+                        <form id="form2" method="POST" action="controller/control-contact.php" enctype="multipart/form-data">
                             <!-- hidden input -->
-                            <input type="hidden" name="action-team" value="editclerk">
+                            <input type="hidden" name="action-contact" value="editcontacttwo">
 
                             <input type="hidden" name="id">
                             <!----------------- general inputs--------------------------- -->
                             <div class="mb-3">
+                            <label  for="name"style="color: #146c43; font-weight:600" >Name:</label>
 
-                                <input type="text" class="form-control myinput" name="name1" min="2" />
+                                <input type="text" class="form-control myinput" name="name" id="name" min="2" />
                                 <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['this_name_error']) ? $_SESSION['this_name_error'] : ""; ?></span>
+                                <span style="color:chocolate"><?php echo isset($_SESSION['contact_two_name_error']) ? $_SESSION['contact_two_name_error'] : ""; ?></span>
                             </div>
                             <div class="mb-3">
+                            <label  for="lname"style="color: #146c43; font-weight:600" >Description:</label>
 
-                                <input type="text" class="form-control myinput" name="description1" id="lname" min="2" />
+                                <input type="text" class="form-control myinput" name="description" id="lname" min="2" />
                                 <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['this_text_error']) ? $_SESSION['this_text_error'] : ""; ?></span>
+                                <span style="color:chocolate"><?php echo isset($_SESSION['contact_two_text_error']) ? $_SESSION['contact_two_text_error'] : ""; ?></span>
                             </div>
 
+                            
+
+
+
+                            <!------------------------- buttons--------------------------- -->
+                            <div>
+                                <input type="submit" value="Update" name="submit3" class="btn btn-success mystyle2" />
+
+                            </div>
+                        </form>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- -------------------------------------modal for update contact four------------------------------- -->
+    <!-- edit modal -->
+
+    <div class="modal fade" id="editModalcontactfour">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Edit Content</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- create our form to do the registration -->
+                    <!-- --------------------main body of the form---------------- -->
+                    <div class="container" id="mymain">
+
+
+
+                        <form id="form2" method="POST" action="controller/control-contact.php" enctype="multipart/form-data">
+                            <!-- hidden input -->
+                            <input type="hidden" name="action-contact" value="editcontactfour">
+
+                            <input type="hidden" name="id">
+                            <!----------------- general inputs--------------------------- -->
                             <div class="mb-3">
+                            <label  for="name"style="color: #146c43; font-weight:600" >Title of Link:</label>
 
-                                <input type="file" class="form-control myinput" id="avatar" name="avatar1" />
-
-                                <input type="hidden" class="form-control myinput" id="avatar" name="avatar2" disabled="disabled" />
-                                <img id="imgs" alt="myimg" width=20%>
+                                <input type="text" class="form-control myinput" name="text" id="name" min="2" />
                                 <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['this_img_error']) ? $_SESSION['this_img_error'] : ""; ?></span>
+                                <span style="color:chocolate"><?php echo isset($_SESSION['contact_5_text_error'] ) ? $_SESSION['contact_5_text_error']  : ""; ?></span>
                             </div>
+                            <div class="mb-3">
+                            <label  for="lname"style="color: #146c43; font-weight:600" >Link:</label>
+
+                                <input type="text" class="form-control myinput" name="link" id="lname" min="2" />
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['contact_5_text_error'] ) ? $_SESSION['contact_5_text_error']  : ""; ?></span>
+                            </div>
+
+                            
+
+
+
+                            <!------------------------- buttons--------------------------- -->
+                            <div>
+                                <input type="submit" value="Update" name="submit3" class="btn btn-success mystyle2" />
+
+                            </div>
+                        </form>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- -------------------------------------modal for update contact five------------------------------- -->
+    <!-- edit modal -->
+
+    <div class="modal fade" id="editModalcontactfive">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Edit Content</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- create our form to do the registration -->
+                    <!-- --------------------main body of the form---------------- -->
+                    <div class="container" id="mymain">
+
+
+
+                        <form id="form2" method="POST" action="controller/control-contact.php" enctype="multipart/form-data">
+                            <!-- hidden input -->
+                            <input type="hidden" name="action-contact" value="editcontactfive">
+
+                            <input type="hidden" name="id">
+                            <!----------------- general inputs--------------------------- -->
+                            <div class="mb-3">
+                            <label  for="name"style="color: #146c43; font-weight:600" >Title of Link:</label>
+
+                                <input type="text" class="form-control myinput" name="text" id="name" min="2" />
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['contact_5_text_error'] ) ? $_SESSION['contact_5_text_error']  : ""; ?></span>
+                            </div>
+                            <div class="mb-3">
+                            <label  for="lname"style="color: #146c43; font-weight:600" >Link:</label>
+
+                                <input type="text" class="form-control myinput" name="link" id="lname" min="2" />
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['contact_5_text_error'] ) ? $_SESSION['contact_5_text_error']  : ""; ?></span>
+                            </div>
+
+                            
 
 
 
@@ -807,16 +921,13 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
 
 
-
-
-
     <!-- javascript links -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
     <!-- jquery link -->
     <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/custom.js"></script>
+    <script type="text/javascript" src="js/contact.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script src="assets/demo/chart-area-demo.js"></script>
     <script src="assets/demo/chart-bar-demo.js"></script>

@@ -202,7 +202,7 @@ if (!empty($action_s)) {
             $image_format = end($array_name); //get last index of array
             //make an address for saving avatar
 
-            $countcard1 = $DbMgrservicecard->countServicecard()->rowCount();
+            $countcard1 = ($DbMgrservicecard->countServicecard()->rowCount())+1;
             $image_address = "Nova/assets/img/" . "cards-" .  $countcard1 . "." . $image_format;
 
             //check for general errors
