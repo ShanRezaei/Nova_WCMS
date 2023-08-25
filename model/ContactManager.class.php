@@ -132,7 +132,46 @@ class ContactManager extends DbConnector{
     
     }
 
+    // add
+    public function addContactThree(ContactThree $three){
+    
+        // query to add new product db
+        $query=$this->db->prepare("INSERT INTO `contactthree`(`icon`, `linkaddress`) VALUES (?,?)");
+        $query->execute(array(
+            $three->getIcon(),
+            $three->getLinkAddress(),
+            
+        
+        ));
+        
+        $result = $query->fetchAll();
+        return $result;
+    
+    }
+
+
     //update
+    public function UpdateContactThree(ContactThree $three){
+    
+        // query to add new product db
+        $query=$this->db->prepare("UPDATE `contactthree` SET `linkaddress`=? WHERE `id`=?");
+        $query->execute(array(
+           
+            $three->getLinkAddress(),
+            
+            $three->getId(),
+        
+        ));
+        
+        $result = $query->fetchAll();
+        return $result;
+    
+    }
+
+
+
+
+
 
     /////////////////////////// methods for contactFour section///////////////////////
     //get all content
@@ -382,6 +421,18 @@ class ContactManager extends DbConnector{
         
        
         return $query;
+    
+    }
+
+    //get content based on name
+    public function CountNameSix(String $name){
+    
+        // query to delete new product db
+        $query=$this->db->prepare("SELECT * FROM `contactsix` WHERE `name`=?");
+        $query->execute(array( $name));
+        
+        $result = $query->fetchAll();
+        return $result;
     
     }
 

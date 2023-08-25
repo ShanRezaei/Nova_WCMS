@@ -35,7 +35,7 @@ $(document).ready(function () {
     $('#editModalhomethree').on('shown.bs.modal', function (e) {
 
 
-        //alert("hello");
+        alert("hello");
 
         var element = $(e.relatedTarget);
         $(this).find("[name='id']").val(element.data("id"));

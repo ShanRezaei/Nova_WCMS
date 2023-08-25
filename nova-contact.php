@@ -545,6 +545,72 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
     <!---------------------------------------- modals--------------------------------- -->
 
+    <!-- Add new  modal for section Three-->
+    <div class="modal fade" id="addModalsocialmedia" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Add new Link</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- create our form to do the registration -->
+                    <!-- --------------------main body of the form---------------- -->
+                    <div class="container" id="mymain">
+
+
+
+                        <form id="form1" method="POST" action="controller/control-contact.php" enctype="multipart/form-data">
+                            <!-- hidden input -->
+                            <input type="hidden" name="action-contact" value="addthree">
+
+                            <!-- <input type="hidden" name="id"> -->
+
+                            <!----------------- general inputs--------------------------- -->
+                            <div class="mb-3">
+
+                                <input type="text" class="form-control myinput" name="linkname" placeholder="Link Address" min="2" />
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['contact_one1_text_error'] ) ? $_SESSION['contact_one1_text_error'] : ""; ?></span>
+                            </div>
+
+                            <div class="mb-3">
+
+                                <!-- add dropdowns -->
+                                <label  for="cars" class="form-label select-label" style="color: #146c43; font-weight:600" >Icon:</label>
+                                <select id="cars" name="iconone" class="bi form-select" style='font-family:"Bootstrap-icons";'>
+                                    <option value=""></option>
+                                    <option value="bi-telegram" >&#xF5B3; Telegram</option>
+                                    <option value="bi-whatsapp">&#xF618; whatsapp</option>
+                                    <option value="bi-discord"> &#xF300; discord</option>
+                                    <option value="bi-messenger"> &#xF648; messenger</option>
+                                    <option value="bi-meta"> &#xF6A1; meta</option>
+                                    
+                                </select>
+                                <div class="icon flex-shrink-0" style="width: 60%;"><i class="" style="color: #f5cf13;font-size: 40px" id="iconholder"></i></div>
+                            </div>
+
+                            
+
+
+
+                            <!------------------------- buttons--------------------------- -->
+                            <div>
+                                <input type="submit" value="Submit" name="submitc" class="btn btn-success mystyle2" />
+
+                            </div>
+                        </form>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
 
     <!-- Add new  modal for section four-->
     <div class="modal fade" id="addModalcontactfour" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -686,7 +752,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
                                 <!-- add dropdowns -->
                                 <label class="form-label select-label">Input Type:</label>
-                                <select id="cars" name="iconsix" class="select">
+                                <select id="cars" name="iconsix" class="bi form-select">
                                     <option value=""></option>
                                     <option value="text">Text</option>
                                     <option value="email">Email</option>
@@ -792,6 +858,79 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
         </div>
 
     </div>
+
+
+    <!------------------------------- update  modal for section Three------------------------->
+
+    <div class="modal fade" id="editModalcontactthree" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Add new Link</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- create our form to do the registration -->
+                    <!-- --------------------main body of the form---------------- -->
+                    <div class="container" id="mymain">
+
+
+
+                        <form id="form1" method="POST" action="controller/control-contact.php" enctype="multipart/form-data">
+                            <!-- hidden input -->
+                            <input type="hidden" name="action-contact" value="editthree">
+
+                             <input type="hidden" name="id"> 
+
+                            <!----------------- general inputs--------------------------- -->
+                            <div class="mb-3">
+
+                                <input type="text" class="form-control myinput" name="linkname" placeholder="Link Address" min="2" />
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['contact_one11_text_error']  ) ? $_SESSION['contact_one11_text_error'] : ""; ?></span>
+                            </div>
+
+                            <div class="mb-3">
+
+                                <!-- add dropdowns -->
+                                <label  for="cars" class="form-label select-label" style="color: #146c43; font-weight:600" >Icon:</label>
+                                <select id="cars" name="iconone" class="bi form-select" style='font-family:"Bootstrap-icons";' disabled>
+                                    <option value=""></option>
+                                    <option value="bi-twitter" >&#xF5EF; twitter</option>
+                                    <option value="bi-facebook">&#xF344; facebook</option>
+                                    <option value="bi-instagram">&#xF437; instagram</option>
+                                    <option value="bi-linkedin">  &#xF472; linkedin</option>
+                                    <option value="bi-telegram" >&#xF5B3; Telegram</option>
+                                    <option value="bi-whatsapp">&#xF618; whatsapp</option>
+                                    <option value="bi-discord"> &#xF300; discord</option>
+                                    >
+
+                                    <div class="icon flex-shrink-0" style="width: 60%;"><i class="" style="color: #f5cf13;font-size: 40px" id="iconholder"></i></div>
+                                    
+                                </select>
+                                <div class="icon flex-shrink-0" style="width: 60%;"><i class="" style="color: #f5cf13;font-size: 40px" id="iconholder"></i></div>
+                            </div>
+
+                            
+
+
+
+                            <!------------------------- buttons--------------------------- -->
+                            <div>
+                                <input type="submit" value="Submit" name="submitc" class="btn btn-success mystyle2" />
+
+                            </div>
+                        </form>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 
 
     <!-- -------------------------------------modal for update contact four------------------------------- -->
@@ -988,6 +1127,78 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
 
 
+    <!------------------------------------- update  modal for section six------------------------->
+
+    <div class="modal fade" id="editModalcontactsix" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Edit Input</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- create our form to do the registration -->
+                    <!-- --------------------main body of the form---------------- -->
+                    <div class="container" id="mymain">
+
+
+
+                        <form id="form1" method="POST" action="controller/control-contact.php" enctype="multipart/form-data">
+                            <!-- hidden input -->
+                            <input type="hidden" name="action-contact" value="editsix">
+
+
+                            <input type="hidden" name="id">
+
+                            <!----------------- general inputs--------------------------- -->
+
+                            <div class="mb-3">
+
+                                <!-- add dropdowns -->
+                                <label class="form-label select-label">Input Type:</label>
+                                <select id="cars" name="iconsix" class="bi form-select">
+                                    <option value=""></option>
+                                    <option value="text">Text</option>
+                                    <option value="email">Email</option>
+                                    <option value="password">Password</option>
+                                    <option value="number">Number</option>
+                                </select>
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['contact_six_type_error']) ? $_SESSION['contact_six_type_error'] : ""; ?></span>
+                            </div>
+
+                            <div class="mb-3">
+
+                                <input type="text" class="form-control myinput" name="inputname" placeholder="Your Input name" min="2" />
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['contact_six_name_error'] ) ? $_SESSION['contact_six_name_error']  : ""; ?></span>
+                            </div>
+                            <div class="mb-3">
+
+                                <input type="text" class="form-control myinput" name="inputholder" id="lname" placeholder="PlaceHolder Content" min="2" />
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['contact_six_place_error']) ? $_SESSION['contact_six_place_error'] : ""; ?></span>
+                            </div>
+
+                            
+
+
+
+                            <!------------------------- buttons--------------------------- -->
+                            <div>
+                                <input type="submit" value="Submit" name="submitc" class="btn btn-success mystyle2" />
+
+                            </div>
+                        </form>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 
 

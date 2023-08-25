@@ -11,6 +11,19 @@ $textfour = $addressfour = "";
 $isvalidatefour = true;
 $_SESSION['contact_four_text_error'] = $_SESSION['contact_four_address_error'] =  "";
 
+// define variables for add section three
+$textone1Err  =  "";
+$textone1 =  "";
+$isvalidateone1 = true;
+$_SESSION['contact_one1_text_error'] =   "";
+
+
+// define variables for update section three
+$textone11Err  =  "";
+$textone11 =  "";
+$isvalidateone11 = true;
+$_SESSION['contact_one11_text_error'] =   "";
+
 // define variables for section five
 $textfiveErr = $addressfiveErr =  "";
 $textfive = $addressfive = "";
@@ -39,7 +52,7 @@ $_SESSION['contact_4_text_error'] = $_SESSION['contact_4_link_error'] =  "";
 
 // define variables for update section one
 $text1Err = $icon1Err = $title1Err = "";
-$text1 = $icon1 = $title1="";
+$text1 = $icon1 = $title1 = "";
 $isvalidate1 = true;
 $_SESSION['contact_1_text_error'] = $_SESSION['contact_1_icon_error'] =  "";
 $_SESSION['contact_1_title_error']  =  "";
@@ -98,6 +111,7 @@ if (!empty($action_contact)) {
 
                 // add new content
 
+                $id = "";
                 $contactfour = new ContactFour($id, $textfour, $addressfour);
                 $addfour = $DbMgcontact->addContactFour($contactfour);
                 if (isset($addfour)) {
@@ -168,6 +182,7 @@ if (!empty($action_contact)) {
 
                 // add new content
 
+                $id = "";
                 $contactfive = new ContactFive($id, $textfive, $addressfive);
                 $addfive = $DbMgcontact->addContactFive($contactfive);
                 if (isset($addfive)) {
@@ -197,12 +212,31 @@ if (!empty($action_contact)) {
             // name validation
             if (!empty(trim($_POST["inputname"]))) {
 
-                if (strlen(trim($_POST["inputname"])) >= 4) {
-                    $namesix = trim($_POST["inputname"]);
-                    $isvalidatesix = true;
+                if (ctype_alpha(trim($_POST["inputname"]))) {
+
+                    if (strlen(trim($_POST["inputname"])) >= 4) {
+
+
+                        //check the uniquness
+                        $name = $DbMgcontact->CountNameSix(trim($_POST["inputname"]));
+                        if (isset($name)) {
+                            $namesixErr = "Name should be Unique.";
+                            $_SESSION['contact_six_name_error'] = "Name should be Unique.";
+
+                            $isvalidatesix = false;
+                        } else {
+                            $namesix = trim($_POST["inputname"]);
+                            $isvalidatesix = true;
+                        }
+                    } else {
+                        $namesixErr = "it should be more than 4 characters.";
+                        $_SESSION['contact_six_name_error'] = "it should be more than 4 characters.";
+
+                        $isvalidatesix = false;
+                    }
                 } else {
-                    $namesixErr = "it should be more than 4 characters.";
-                    $_SESSION['contact_six_name_error'] = "it should be more than 4 characters.";
+                    $namesixErr = "it should be only characters.";
+                    $_SESSION['contact_six_name_error'] = "it should be only characters.";
 
                     $isvalidatesix = false;
                 }
@@ -251,6 +285,7 @@ if (!empty($action_contact)) {
 
                 // add new content
 
+                $id = "";
                 $contactsix = new ContactSix($id, $typesix, $namesix, $placesix);
                 $addsix = $DbMgcontact->addContactSix($contactsix);
                 if (isset($addsix)) {
@@ -263,7 +298,7 @@ if (!empty($action_contact)) {
                 }
             } else {
 
-                echo "<script>alert('fill out all fields correctly.');</script>";
+                echo "<script>alert('fill out all fields correctly based on the errors.');</script>";
                 echo "<script>window.location.href='../nova-contact.php';</script>";
             }
         } else {
@@ -274,8 +309,8 @@ if (!empty($action_contact)) {
 
         // update section two
     } else if ($action_contact == "editcontacttwo") {
-        
-        if (!empty($_POST['name']) && !empty($_POST['description']) ) {
+
+        if (!empty($_POST['name']) && !empty($_POST['description'])) {
             // validate
             if (!empty(trim($_POST["name"]))) {
 
@@ -321,7 +356,7 @@ if (!empty($action_contact)) {
 
                 // update content
 
-                $idtwo=$_POST["id"];
+                $idtwo = $_POST["id"];
                 $contacttwo = new ContactTwo($idtwo, $nametwo, $texttwo);
                 $update2 = $DbMgcontact->updateContactTwo($contacttwo);
                 if (isset($update2)) {
@@ -337,18 +372,15 @@ if (!empty($action_contact)) {
                 echo "<script>alert('fill out all fields correctly.');</script>";
                 echo "<script>window.location.href='../nova-contact.php';</script>";
             }
-
-
-
-        }else {
+        } else {
 
             echo "<script>alert('fill out all fields.');</script>";
             echo "<script>window.location.href='../nova-contact.php';</script>";
         }
 
         // update section five
-    }else if($action_contact == "editcontactfive"){
-        if (!empty($_POST['text']) && !empty($_POST['link']) ) {
+    } else if ($action_contact == "editcontactfive") {
+        if (!empty($_POST['text']) && !empty($_POST['link'])) {
 
             if (!empty(trim($_POST["text"]))) {
 
@@ -395,7 +427,7 @@ if (!empty($action_contact)) {
 
                 // update content
 
-                $id5=$_POST["id"];
+                $id5 = $_POST["id"];
                 $contact5 = new ContactFive($id5, $text5, $link5);
                 $update5 = $DbMgcontact->updateContactFive($contact5);
                 if (isset($update5)) {
@@ -411,21 +443,15 @@ if (!empty($action_contact)) {
                 echo "<script>alert('fill out all fields correctly.');</script>";
                 echo "<script>window.location.href='../nova-contact.php';</script>";
             }
-
-
-
-
-
-
-        }else {
+        } else {
 
             echo "<script>alert('fill out all fields.');</script>";
             echo "<script>window.location.href='../nova-contact.php';</script>";
         }
 
         // update section four
-    }else if($action_contact == "editcontactfour"){
-        if (!empty($_POST['text']) && !empty($_POST['link']) ) {
+    } else if ($action_contact == "editcontactfour") {
+        if (!empty($_POST['text']) && !empty($_POST['link'])) {
 
             if (!empty(trim($_POST["text"]))) {
 
@@ -472,7 +498,7 @@ if (!empty($action_contact)) {
 
                 // update content
 
-                $id4=$_POST["id"];
+                $id4 = $_POST["id"];
                 $contact4 = new ContactFour($id4, $text5, $link5);
                 $update4 = $DbMgcontact->updateContactFour($contact4);
                 if (isset($update4)) {
@@ -488,19 +514,12 @@ if (!empty($action_contact)) {
                 echo "<script>alert('fill out all fields correctly.');</script>";
                 echo "<script>window.location.href='../nova-contact.php';</script>";
             }
-
-
-
-
-
-
-        }else {
+        } else {
 
             echo "<script>alert('fill out all fields.');</script>";
             echo "<script>window.location.href='../nova-contact.php';</script>";
         }
-
-    }else if($action_contact == "editcontactone"){
+    } else if ($action_contact == "editcontactone") {
 
         if (!empty($_POST['title']) && !empty($_POST['description']) && !empty($_POST['iconone'])) {
 
@@ -544,10 +563,9 @@ if (!empty($action_contact)) {
 
             if (!empty(($_POST["iconone"]))) {
 
-                
-                    $icon1 = trim($_POST["iconone"]);
-                    $isvalidate1 = true;
-                
+
+                $icon1 = trim($_POST["iconone"]);
+                $isvalidate1 = true;
             } else {
                 $icon1Err = "choose the icon.";
                 $_SESSION['contact_1_icon_error'] = "choose the icon.";
@@ -562,8 +580,8 @@ if (!empty($action_contact)) {
 
                 // update content
 
-                $id1=$_POST["id"];
-                $contact1 = new ContactOne($id1, $title1, $text1,$icon1);
+                $id1 = $_POST["id"];
+                $contact1 = new ContactOne($id1, $title1, $text1, $icon1);
                 $update1 = $DbMgcontact->updateContactOne($contact1);
                 if (isset($update1)) {
 
@@ -573,23 +591,114 @@ if (!empty($action_contact)) {
                     echo "<script>alert('Try again.');</script>";
                     echo "<script>window.location.href='../nova-contact.php';</script>";
                 }
-            }else {
+            } else {
 
                 echo "<script>alert('fill out all fields correctly.');</script>";
                 echo "<script>window.location.href='../nova-contact.php';</script>";
             }
-
-
-
-
-
-
-        }else {
+        } else {
 
             echo "<script>alert('fill out all fields.');</script>";
             echo "<script>window.location.href='../nova-contact.php';</script>";
         }
+    } else if ($action_contact == "addthree") {
+        if (!empty($_POST['linkname']) &&  !empty($_POST['iconone'])) {
 
+            if (!empty(trim($_POST["linkname"]))) {
+
+                if (strlen(trim($_POST["linkname"])) >= 4) {
+                    $textone1 = trim($_POST["linkname"]);
+                    $isvalidateone1 = true;
+                } else {
+                    $textone1Err = "it should be more than 4 characters.";
+                    $_SESSION['contact_one1_text_error'] = "it should be more than 4 characters.";
+
+                    $isvalidateone1 = false;
+                }
+            } else {
+                $textone1Err = "Enter the  address of the link.";
+                $_SESSION['contact_one1_text_error'] = "Enter the address of the link.";
+
+                $isvalidateone1 = false;
+            }
+
+
+            // on submit
+
+            if ($isvalidateone1 === true  &&  $textone1Err == "") {
+
+                // add new content
+
+                $id = "";
+                $contact3 = new ContactThree($id, $_POST['iconone'], $textone1);
+                $add3 = $DbMgcontact->addContactThree($contact3);
+                if (isset($add3)) {
+
+                    echo "<script>alert('you add new content successfully.');</script>";
+                    echo "<script>window.location.href='../nova-contact.php';</script>";
+                } else {
+                    echo "<script>alert('Try again.');</script>";
+                    echo "<script>window.location.href='../nova-contact.php';</script>";
+                }
+            } else {
+
+                echo "<script>alert('fill out all fields correctly.');</script>";
+                echo "<script>window.location.href='../nova-contact.php';</script>";
+            }
+        } else {
+
+            echo "<script>alert('fill out all fields.');</script>";
+            echo "<script>window.location.href='../nova-contact.php';</script>";
+        }
+    } else if ($action_contact == "editthree") {
+        if (!empty($_POST['linkname'])) {
+
+            //validation
+            if (!empty(trim($_POST["linkname"]))) {
+
+                if (strlen(trim($_POST["linkname"])) >= 4) {
+                    $textone11 = trim($_POST["linkname"]);
+                    $isvalidateone11 = true;
+                } else {
+                    $textone11Err = "it should be more than 4 characters.";
+                    $_SESSION['contact_one11_text_error'] = "it should be more than 4 characters.";
+
+                    $isvalidateone11 = false;
+                }
+            } else {
+                $textone11Err = "Enter the  address of the link.";
+                $_SESSION['contact_one11_text_error'] = "Enter the address of the link.";
+
+                $isvalidateone11 = false;
+            }
+
+
+            if ($isvalidateone11 === true  &&  $textone11Err == "") {
+
+                // update content
+
+                $id = $_POST["id"];
+                $icon = "";
+                $contact4 = new ContactThree($id, $icon, $textone11);
+                $update4 = $DbMgcontact->UpdateContactThree($contact4);
+                if (isset($update4)) {
+
+                    echo "<script>alert('you update content successfully.');</script>";
+                    echo "<script>window.location.href='../nova-contact.php';</script>";
+                } else {
+                    echo "<script>alert('Try again.');</script>";
+                    echo "<script>window.location.href='../nova-contact.php';</script>";
+                }
+            } else {
+
+                echo "<script>alert('fill out all fields correctly.');</script>";
+                echo "<script>window.location.href='../nova-contact.php';</script>";
+            }
+        } else {
+
+            echo "<script>alert('fill out all fields.');</script>";
+            echo "<script>window.location.href='../nova-contact.php';</script>";
+        }
     }
 }
 

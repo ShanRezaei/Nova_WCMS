@@ -171,6 +171,7 @@ if (!empty($action_h)) {
                             //create content object
                             $newimgaddress = "assets/img/blog/" . "blog-" . $countpost . "." . $image_format;
 
+                            $id="";
                             $post = new HomeThree($id, $fname, $lname, $title, $text, $newimgaddress);
                             $addpost = $DbMgrhome->addNewPost($post);
 
