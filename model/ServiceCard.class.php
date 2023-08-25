@@ -44,7 +44,7 @@ private $text;
      /**
       * @param mixed $img
       */
-     public function setIcon($img) : void
+     public function setImg($img) : void
      {
          $this->img = $img;
  

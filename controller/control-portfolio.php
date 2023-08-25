@@ -200,7 +200,7 @@ if (!empty($action_p)) {
             // on submit
             if ($isvalidate1 === true  &&   $name1Err == "" && $text1Err == "") {
 
-                if (empty($_FILES["avatar1"]) == false) {
+                if (($_FILES["avatar1"]['name']) == "") {
 
 
                     $id = $_POST["id"];

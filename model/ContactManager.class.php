@@ -26,6 +26,22 @@ class ContactManager extends DbConnector{
 
 
     //update
+    public function updateContactOne(ContactOne $contactone){
+        $query1 = $this->db->prepare("UPDATE `contactone` SET `title`=?,`description`=?,`icon`=? WHERE `id`=?;") ;
+        $query1->execute(array(
+            $contactone->getTitle(),
+            $contactone->getDescription(),
+            $contactone->getIcon(),
+           
+            $contactone->getId(),
+             
+    
+        ));
+    
+        $result1 = $query1->fetchAll();
+        return $result1;
+    
+    }
 
     
 

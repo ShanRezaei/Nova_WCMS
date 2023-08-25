@@ -37,7 +37,12 @@ $isvalidate5 = true;
 $_SESSION['contact_5_text_error'] = $_SESSION['contact_5_link_error'] =  "";
 $_SESSION['contact_4_text_error'] = $_SESSION['contact_4_link_error'] =  "";
 
-
+// define variables for update section one
+$text1Err = $icon1Err = $title1Err = "";
+$text1 = $icon1 = $title1="";
+$isvalidate1 = true;
+$_SESSION['contact_1_text_error'] = $_SESSION['contact_1_icon_error'] =  "";
+$_SESSION['contact_1_title_error']  =  "";
 
 if (isset($_REQUEST['action-contact'])) {
     $action_contact = $_REQUEST['action-contact'];
@@ -479,6 +484,96 @@ if (!empty($action_contact)) {
                     echo "<script>window.location.href='../nova-contact.php';</script>";
                 }
             } else {
+
+                echo "<script>alert('fill out all fields correctly.');</script>";
+                echo "<script>window.location.href='../nova-contact.php';</script>";
+            }
+
+
+
+
+
+
+        }else {
+
+            echo "<script>alert('fill out all fields.');</script>";
+            echo "<script>window.location.href='../nova-contact.php';</script>";
+        }
+
+    }else if($action_contact == "editcontactone"){
+
+        if (!empty($_POST['title']) && !empty($_POST['description']) && !empty($_POST['iconone'])) {
+
+            if (!empty(trim($_POST["title"]))) {
+
+                if (strlen(trim($_POST["title"])) >= 2) {
+                    $title1 = trim($_POST["title"]);
+                    $isvalidate1 = true;
+                } else {
+                    $title1Err = "it should be more than 2 characters.";
+                    $_SESSION['contact_1_title_error'] = "it should be more than 2 characters.";
+
+                    $isvalidate1 = false;
+                }
+            } else {
+                $title1Err = "Enter the  title.";
+                $_SESSION['contact_1_title_error'] = "Enter the title.";
+
+                $isvalidate1 = false;
+            }
+
+
+            if (!empty(trim($_POST["description"]))) {
+
+                if (strlen(trim($_POST["description"])) >= 2) {
+                    $text1 = trim($_POST["description"]);
+                    $isvalidate1 = true;
+                } else {
+                    $text1Err = "it should be more than 2 characters.";
+                    $_SESSION['contact_1_title_error'] = "it should be more than 2 characters.";
+
+                    $isvalidate1 = false;
+                }
+            } else {
+                $text1Err = "Enter the  description.";
+                $_SESSION['contact_1_title_error'] = "Enter the description.";
+
+                $isvalidate1 = false;
+            }
+
+
+            if (!empty(($_POST["iconone"]))) {
+
+                
+                    $icon1 = trim($_POST["iconone"]);
+                    $isvalidate1 = true;
+                
+            } else {
+                $icon1Err = "choose the icon.";
+                $_SESSION['contact_1_icon_error'] = "choose the icon.";
+
+                $isvalidate1 = false;
+            }
+
+
+            // on submit
+
+            if ($isvalidate1 === true  &&  $text1Err == "" && $icon1Err == "" && $title1Err == "") {
+
+                // update content
+
+                $id1=$_POST["id"];
+                $contact1 = new ContactOne($id1, $title1, $text1,$icon1);
+                $update1 = $DbMgcontact->updateContactOne($contact1);
+                if (isset($update1)) {
+
+                    echo "<script>alert('you aupdated content successfully.');</script>";
+                    echo "<script>window.location.href='../nova-contact.php';</script>";
+                } else {
+                    echo "<script>alert('Try again.');</script>";
+                    echo "<script>window.location.href='../nova-contact.php';</script>";
+                }
+            }else {
 
                 echo "<script>alert('fill out all fields correctly.');</script>";
                 echo "<script>window.location.href='../nova-contact.php';</script>";

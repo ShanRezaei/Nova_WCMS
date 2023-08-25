@@ -373,29 +373,42 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                             <input type="hidden" name="id">
                             <!----------------- general inputs--------------------------- -->
                             <div class="mb-3">
+                            <label  for="fname"style="color: #146c43; font-weight:600" >First Name:</label>
 
-                                <input type="text" class="form-control myinput" name="name1" min="2" />
+                                <input type="text" class="form-control myinput" name="fname" min="2" id="fname" />
                                 <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['this_name_error']) ? $_SESSION['this_name_error'] : ""; ?></span>
+                                <span style="color:chocolate"><?php echo isset($_SESSION['clerk_fname1_error']) ? $_SESSION['clerk_fname1_error'] : ""; ?></span>
+                            </div>
+                            <div class="mb-3">
+                            <label  for="lname"style="color: #146c43; font-weight:600" >Last Name:</label>
+
+                                <input type="text" class="form-control myinput" name="lname" id="lname" min="2" />
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['clerk_lname1_error'] ) ? $_SESSION['clerk_lname1_error']  : ""; ?></span>
+                            </div>
+
+                            <div class="mb-3">
+                            <label  for="job"style="color: #146c43; font-weight:600" >Job Title:</label>
+
+                                <input type="text" class="form-control myinput" name="job" id="job" min="2" />
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['clerk_job1_error']) ? $_SESSION['clerk_job1_error']: ""; ?></span>
                             </div>
                             <div class="mb-3">
 
-                                <input type="text" class="form-control myinput" name="description1" id="lname" min="2" />
-                                <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['this_text_error']) ? $_SESSION['this_text_error'] : ""; ?></span>
-                            </div>
-
-                            <div class="mb-3">
-
+                            <label  for="avatar" style="color: #146c43; font-weight:600" >Image:</label>
                                 <input type="file" class="form-control myinput" id="avatar" name="avatar1" />
-
-                                <input type="hidden" class="form-control myinput" id="avatar" name="avatar2" disabled="disabled" />
-                                <img id="imgs" alt="myimg" width=20% style="margin-top: 3%;">
                                 <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['this_img_error']) ? $_SESSION['this_img_error'] : ""; ?></span>
+                                <span style="color:chocolate"><?php echo isset($_SESSION['clerk_img1_error']) ? $_SESSION['clerk_img1_error']: ""; ?></span>
+
+                                
+
+                                <img id="imgs"  src="" alt="myimg" width=20% style="margin-top: 3%;">
+                                
                             </div>
 
 
+                            <input type="hidden" class="form-control myinput"  name="imglink1"  />
 
                             <!------------------------- buttons--------------------------- -->
                             <div>
@@ -433,7 +446,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
     <script src="js/scripts.js"></script>
     <!-- jquery link -->
     <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/custom.js"></script>
+    <script type="text/javascript" src="js/team.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script src="assets/demo/chart-area-demo.js"></script>
     <script src="assets/demo/chart-bar-demo.js"></script>

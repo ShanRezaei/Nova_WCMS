@@ -234,7 +234,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                             <div class="alert alert-warning" role="alert" style="display:<?php echo isset($showu) ? $showu : "block"; ?>">
                                 Log in to see the Table!
                             </div>
-                            <table class="table table-hover" style="display:<?php echo isset($showt) ? $showt : "none"; ?>">
+                            <table class="table table-hover" style="display:<?php echo isset($showt) ? $showt : "none"; ?> margin-left:30%">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -253,7 +253,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                                         <tr>
                                             <td><?= $service->getId() ?></td>
                                             <td>
-                                                <div class="icon flex-shrink-0"><i class="bi <?= $service->getIcon() ?>" style="color: #f5cf13;"></i></div>
+                                                <div class="icon flex-shrink-0"><i class="bi <?= $service->getIcon() ?>" style="color: #f5cf13;font-size: 25px"></i></div>
                                             </td>
                                             <td><?= $service->getTitle() ?></td>
                                             <td><?= $service->getText() ?></td>
@@ -288,7 +288,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                             <div class="alert alert-warning" role="alert" style="display:<?php echo isset($showu) ? $showu : "block"; ?>">
                                 Log in to see the Table!
                             </div>
-                            <table class="table table-hover" style="display:<?php echo isset($showt) ? $showt : "none"; ?>">
+                            <table class="table table-hover" style="display:<?php echo isset($showt) ? $showt : "none"; ?> margin-left:30%">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -394,13 +394,13 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
                             <div class="mb-3">
                                 <!-- drop down for icon -->
-                                <label class="form-label select-label">Icon:</label>
-                                <select id="cars" name="icons" class="select">
+                                <label class="form-label select-label" style=" font-weight:600">Icon:</label>
+                                <select id="cars" name="icons" class="bi form-select" style='font-family:"Bootstrap-icons";'>
                                     <option value=""></option>
-                                    <option value="bi-airplane-fill">airplane</option>
-                                    <option value="bi-android2">android</option>
-                                    <option value="bi-badge-ad-fill">Ad-Badge</option>
-                                    <option value="bi-bag-fill">Bag-fill</option>
+                                    <option value="bi-airplane-fill">&#xF7CC; airplane</option>
+                                    <option value="bi-android2">&#xF7D1;android</option>
+                                    <option value="bi-badge-ad-fill">&#xF160;Ad-Badge</option>
+                                    <option value="bi-bag-fill">&#xF174;Bag-fill</option>
                                 </select>
                                 <!-- error text to show -->
                                 <span style="color:chocolate"><?php echo isset($_SESSION['service_text_error']) ? $_SESSION['service_text_error'] : ""; ?></span>
@@ -448,29 +448,42 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                             <!----------------- general inputs--------------------------- -->
                             <div class="mb-3">
 
-                                <input type="text" class="form-control myinput" name="title1" min="2" />
+                                 <label  for="name"style="color: #146c43; font-weight:600" >Title :</label>
+                                <input type="text" class="form-control myinput" name="title1" min="2" id="name"/>
                                 <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['this_name_error']) ? $_SESSION['this_name_error'] : ""; ?></span>
+                                <span style="color:chocolate"><?php echo isset($_SESSION['service_title1_error']) ? $_SESSION['service_title1_error'] : ""; ?></span>
                             </div>
                             <div class="mb-3">
-
+                            <label  for="description"style="color: #146c43; font-weight:600" >description :</label>
                                 <input type="text" class="form-control myinput" name="description1" id="description" min="2" />
                                 <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['this_text_error']) ? $_SESSION['this_text_error'] : ""; ?></span>
+                                <span style="color:chocolate"><?php echo isset($_SESSION['service_text1_error']) ? $_SESSION['service_text1_error'] : ""; ?></span>
                             </div>
 
                             <div class="mb-3">
                                 <!-- drop down for icon -->
-                                <label class="form-label select-label">Icon:</label>
-                                <select id="cars" name="icons" class="select">
-                                    <option value="bi-airplane-fill">airplane</option>
-                                    <option value="bi-android2">android</option>
-                                    <option value="bi-badge-ad-fill">Ad-Badge</option>
-                                    <option value="bi-bag-fill">Bag-fill</option>
+                                <label  for="cars" class="form-label select-label" style="color: #146c43; font-weight:600" >Icon:</label>
+                                <select id="cars" name="icons" class="bi form-select" style='font-family:"Bootstrap-icons";'>
+                                    <option value=""></option>
+                                    <option value="bi-briefcase-fill">&#xF1CB;briefcase</option>
+                                    <option value="bi-postcard-fill">&#xF782;checklist</option>
+                                    <option value="bi-clipboard-data-fill"> &#xF71C;chart</option>
+                                    <option value="bi-binoculars-fill"> &#xF18E;binoculars</option>
+                                    <option value="bi-brightness-low-fill"> &#xF1D3;brightness</option>
+                                    <option value="bi-calendar4-range"> &#xF216;calendar</option>
+                                    <option value="bi-briefcase"> &#xF1CC;briefcase</option>
+                                    <option value="bi-card-checklist">&#xF224;checklist</option>
+                                    <option value="bi-bar-chart">  &#xF17E;chart</option>
+                                    <option value="bi-binoculars"> &#xF18F;binoculars</option>
+                                    <option value="bi-brightness-high"> &#xF1D2;brightness</option>
+                                    <option value="bi-calendar4-week"> &#xF217;calendar</option>
                                 </select>
 
+                                <div class="icon flex-shrink-0" style="width: 60%;"><i class="" style="color: #f5cf13;font-size: 40px" id="iconholder1"></i></div>
                             </div>
 
+                            <!-- error text to show -->
+                            <span style="color:chocolate"><?php echo isset($_SESSION['service_icon1_error'] ) ?$_SESSION['service_icon1_error']  : ""; ?></span>
 
                             <!------------------------- buttons--------------------------- -->
                             <div>
@@ -574,28 +587,34 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                             <input type="hidden" name="action-service" value="editservicecard">
 
 
+                            <input type="hidden" name="id">
                             <!----------------- general inputs--------------------------- -->
                             <div class="mb-3">
+                                <label  for="fname"style="color: #146c43; font-weight:600" >Title:</label>
 
-                                <input type="text" class="form-control myinput" name="titlecard1" placeholder="Title" min="2" />
+                                <input type="text" class="form-control myinput" name="titlecard1"  min="2" id="fname" />
                                 <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['service_title_error']) ? $_SESSION['service_title_error'] : ""; ?></span>
+                                <span style="color:chocolate"><?php echo isset($_SESSION['service_title1_card_error']) ? $_SESSION['service_title1_card_error'] : ""; ?></span>
                             </div>
                             <div class="mb-3">
+                            <label  for="lname"style="color: #146c43; font-weight:600" >Description:</label>
 
-                                <input type="text" class="form-control myinput" name="textcard1" id="lname" placeholder="Description" min="2" />
+                                <input type="text" class="form-control myinput" name="textcard1" id="lname"  min="2" />
                                 <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['service_text_error']) ? $_SESSION['service_text_error'] : ""; ?></span>
+                                <span style="color:chocolate"><?php echo isset($_SESSION['service_text1_card_error']) ? $_SESSION['service_text1_card_error'] : ""; ?></span>
                             </div>
 
                             <div class="mb-3">
 
+                            <label  for="avatar"style="color: #146c43; font-weight:600" >Image:</label>
                                 <input type="file" class="form-control myinput" id="avatar" name="imagecard1" />
 
+                                <img id="imgs"  src="" alt="myimg" width=20% style="margin-top: 3%;">
                                 <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['clerk_img_error']) ? $_SESSION['clerk_img_error'] : ""; ?></span>
+                                <span style="color:chocolate"><?php echo isset($_SESSION['service_img1_card_error']) ? $_SESSION['service_img1_card_error'] : ""; ?></span>
                             </div>
 
+                            <input type="hidden" class="form-control myinput"  name="imglink1"  />
                             <!------------------------- buttons--------------------------- -->
                             <div>
                                 <input type="submit" value="Submit" name="submits1" class="btn btn-success mystyle2" />
@@ -628,7 +647,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
     <script src="js/scripts.js"></script>
     <!-- jquery link -->
     <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/custom.js"></script>
+    <script type="text/javascript" src="js/service.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script src="assets/demo/chart-area-demo.js"></script>
     <script src="assets/demo/chart-bar-demo.js"></script>

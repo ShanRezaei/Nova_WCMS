@@ -74,6 +74,41 @@ public function countClerk(){
 
 
 // update team
+public function updateTeamOne(Team $team){
+    $query1 = $this->db->prepare("UPDATE `team` SET `img`=?,`fname`=?,`lname`=?,`job`=? WHERE `id`=?;") ;
+    $query1->execute(array(
+        $team->getImg(),
+        $team->getfirstName(),
+        $team->getlastName(),
+        $team->getjob(),
+        
+        $team->getId(),
+         
+
+    ));
+
+    $result1 = $query1->fetchAll();
+    return $result1;
+
+}
+
+public function updateTeamTwo(Team $team){
+    $query1 = $this->db->prepare("UPDATE `team` SET `fname`=?,`lname`=?,`job`=? WHERE `id`=?;") ;
+    $query1->execute(array(
+       
+        $team->getfirstName(),
+        $team->getlastName(),
+        $team->getjob(),
+        
+        $team->getId(),
+         
+
+    ));
+
+    $result1 = $query1->fetchAll();
+    return $result1;
+
+}
 
 
 

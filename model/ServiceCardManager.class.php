@@ -69,6 +69,39 @@ public function countServicecard(){
 
 
 // update
+public function updateServiceCardOne(ServiceCard $service){
+    $query1 = $this->db->prepare("UPDATE `servicecard` SET `title`=?,`text`=? WHERE `id`=?;") ;
+    $query1->execute(array(
+        $service->getTitle(),
+        $service->getText(),
+        
+        $service->getId(),
+         
 
+    ));
+
+    $result1 = $query1->fetchAll();
+    return $result1;
+
+}
+
+
+
+public function updateServiceCardTwo(ServiceCard $service){
+    $query1 = $this->db->prepare("UPDATE `servicecard` SET`img`=?, `title`=?,`text`=? WHERE `id`=?;") ;
+    $query1->execute(array(
+        $service->getImg(),
+        $service->getTitle(),
+        $service->getText(),
+        
+        $service->getId(),
+         
+
+    ));
+
+    $result1 = $query1->fetchAll();
+    return $result1;
+
+}
 
 }

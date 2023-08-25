@@ -51,6 +51,25 @@ $(document).ready(function () {
 
     });
 
+    $('#editModalcontactone').on('shown.bs.modal', function (e) {
+
+
+         
+
+        var element = $(e.relatedTarget);
+        $(this).find("[name='id']").val(element.data("id"));
+        $(this).find("[name='title']").val(element.data("title"));
+        $(this).find("[name='description']").val(element.data("text"));
+        $(this).find("[name='iconone']").val(element.data("icon"));
+        
+        $icon = ('bi' + ' ' + $("[name='iconone']").val());
+        $('#iconholder').attr('class', $icon);
+        
+        
+
+
+    });
+
 
 
 })

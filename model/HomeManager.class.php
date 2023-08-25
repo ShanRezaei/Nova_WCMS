@@ -154,7 +154,49 @@ class HomeManager extends DbConnector{
     }
 
 
-    //update
+    //update one 
+    public function updateHomeThreeOne(HomeThree $home){
+        $query1 = $this->db->prepare("UPDATE `homethree` SET `firstname`=?,`lastname`=?,`title`=?,`text`=?,`img`=? WHERE `id`=?;") ;
+        $query1->execute(array(
+            
+            $home->getfirstName(),
+            $home->getlastName(),
+            $home->getTitle(),
+            $home->getText(),
+            $home->getImg(),
+            
+            $home->getId(),
+             
+    
+        ));
+    
+        $result1 = $query1->fetchAll();
+        return $result1;
+    
+    }
+
+
+    //update two
+    public function updateHomeThreeTwo(HomeThree $home){
+        $query1 = $this->db->prepare("UPDATE `homethree` SET `firstname`=?,`lastname`=?,`title`=?,`text`=? WHERE `id`=?;") ;
+        $query1->execute(array(
+            
+            $home->getfirstName(),
+            $home->getlastName(),
+            $home->getTitle(),
+            $home->getText(),
+           
+            
+            $home->getId(),
+             
+    
+        ));
+    
+        $result1 = $query1->fetchAll();
+        return $result1;
+    
+    
+    }
 
 
 

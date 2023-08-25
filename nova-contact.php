@@ -46,7 +46,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
     <link href="Nova/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="Nova/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
     <link href="Nova/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -243,7 +243,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                                         <tr>
                                             <td><?= $all->getId() ?></td>
                                             <td>
-                                                <div class="icon flex-shrink-0"><i class="bi <?= $all->getIcon() ?>" style="color: #f5cf13;"></i></div>
+                                                <div class="icon flex-shrink-0"><i class="bi <?= $all->getIcon() ?>" style="color: #f5cf13;font-size: 25px"></i></div>
                                             </td>
                                             <td><?= $all->getTitle() ?></td>
                                             <td><?= $all->getDescription() ?></td>
@@ -336,7 +336,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
                                         <tr>
                                             <td><?= $allthree->getId() ?></td>
-                                            <td><div class="icon flex-shrink-0"><i class="bi <?= $allthree->getIcon() ?>" style="color: #f5cf13;"></i></div></td>
+                                            <td><div class="icon flex-shrink-0"><i class="bi <?= $allthree->getIcon() ?>" style="color: #f5cf13;font-size: 25px"></i></div></td>
                                             <td><?= $allthree->getLinkAddress() ?></td>
 
                                             <td><?php if ($_SESSION["accesor_level"] == "Admin") : ?>
@@ -356,7 +356,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
                             </table>
                             <!-- add modal by two tags -->
-                            <!-- <a href="#" class="btn btn-primary" id="addp" data-bs-toggle="modal" data-bs-target="#addModalservicecard">Add New Service Card</a> -->
+                           <a href="#" class="btn btn-primary" id="addp" data-bs-toggle="modal" data-bs-target="#addModalsocialmedia">Add New Social Media Link</a> 
 
                         </div>
 
@@ -912,6 +912,79 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
 
 
+    <!-- -------------------------------------modal for update contact One------------------------------- -->
+    <!-- edit modal -->
+
+    <div class="modal fade" id="editModalcontactone">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Edit Content</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- create our form to do the registration -->
+                    <!-- --------------------main body of the form---------------- -->
+                    <div class="container" id="mymain">
+
+
+
+                        <form id="form2" method="POST" action="controller/control-contact.php" enctype="multipart/form-data">
+                            <!-- hidden input -->
+                            <input type="hidden" name="action-contact" value="editcontactone">
+
+                            <input type="hidden" name="id">
+                            <!----------------- general inputs--------------------------- -->
+                            <div class="mb-3">
+                            <label  for="name"style="color: #146c43; font-weight:600" >Title :</label>
+
+                                <input type="text" class="form-control myinput" name="title" id="name" min="2" />
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['contact_1_title_error'] ) ? $_SESSION['contact_1_title_error']  : ""; ?></span>
+                            </div>
+                            <div class="mb-3">
+                            <label  for="lname"style="color: #146c43; font-weight:600" >Description:</label>
+
+                                <input type="text" class="form-control myinput" name="description" id="lname" min="2" />
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['contact_1_text_error'] ) ? $_SESSION['contact_1_text_error']  : ""; ?></span>
+                            </div>
+
+                            <div class="mb-3">
+
+                                <!-- add dropdowns -->
+                                <label  for="cars" class="form-label select-label" style="color: #146c43; font-weight:600" >Icon:</label>
+                                <select id="cars" name="iconone" class="bi form-select" style='font-family:"Bootstrap-icons";'>
+                                    <option value=""></option>
+                                    <option value="bi-geo-alt" >&#xF3E8; Address</option>
+                                    <option value="bi-envelope">&#xF32F; Email</option>
+                                    <option value="bi-phone">&#xF4E7; phone</option>
+                                    <option value="bi-geo-fill">&#xF3E9; Address</option>
+                                    <option value="bi-telephone-inbound-fill">&#xF5B7; Phone</option>
+                                    <option value="bi-envelope-paper-fill" >&#xF73A; Email</option>
+                                </select>
+                                <div class="icon flex-shrink-0" style="width: 60%;"><i class="" style="color: #f5cf13;font-size: 40px" id="iconholder"></i></div>
+                            </div>
+
+                            <!-- error text to show -->
+                            <span style="color:chocolate"><?php echo isset($_SESSION['contact_1_icon_error'] ) ? $_SESSION['contact_1_icon_error']  : ""; ?></span>
+
+
+                            <!------------------------- buttons--------------------------- -->
+                            <div>
+                                <input type="submit" value="Update" name="submit3" class="btn btn-success mystyle2" />
+
+                            </div>
+                        </form>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 
 

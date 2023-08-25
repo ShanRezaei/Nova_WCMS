@@ -343,7 +343,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                                             </td>
 
 
-                                            <td><a class="btn btn-warning " href="#" data-bs-toggle="modal" data-bs-target="#editModalhomethree" data-id="<?= $allt->getId() ?>"   data-fname="<?= $allt->getFirstName() ?>" data-lname="<?= $allt->getLastName() ?>"  data-title="<?= $allt->getTitle() ?>"  data-text="<?= $allt->getText() ?>"   data-video="<?= $allt->getImg() ?>"> Update</a></td>
+                                            <td><a class="btn btn-warning " href="#" data-bs-toggle="modal" data-bs-target="#editModalhomethree" data-id="<?= $allt->getId() ?>"   data-fname="<?= $allt->getFirstName() ?>" data-lname="<?= $allt->getLastName() ?>"  data-title="<?= $allt->getTitle() ?>"  data-text="<?= $allt->getText() ?>"   data-img="<?= $allt->getImg() ?>"> Update</a></td>
 
                                         </tr>
                                     <?php endforeach; ?>
@@ -588,6 +588,91 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
 
 
+    <!-------------------------------- edit modal home three -------------------------------->
+
+    <div class="modal fade" id="editModalhomethree">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Edit Content</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- create our form to do the registration -->
+                    <!-- --------------------main body of the form---------------- -->
+                    <div class="container" id="mymain">
+
+
+
+                        <form id="form2" method="POST" action="controller/control-home.php" enctype="multipart/form-data">
+                            <!-- hidden input -->
+                            <input type="hidden" name="action-home" value="edithomethree">
+
+                            <input type="hidden" name="id">
+                            <!----------------- general inputs--------------------------- -->
+                            <div class="mb-3">
+
+                                <label  for="title"style="color: #146c43; font-weight:600" >First name:</label>
+                                <input type="text" class="form-control myinput"  id="title" name="fname" min="2" />
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset( $_SESSION['post_fname11_error'] ) ?  $_SESSION['post_fname11_error'] : ""; ?></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="text" style="color: #146c43; font-weight:600">Last name:</label>
+                                <input type="text" class="form-control myinput" name="lname" min="2" id="text" />
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['post_lname11_error']) ? $_SESSION['post_lname11_error']: ""; ?></span>
+                            </div>
+                            
+                            <div class="mb-3">
+
+                            <label for="btitle" style="color: #146c43; font-weight:600">Title:</label>
+                                <input type="text" class="form-control myinput" name="title" min="2" id="btitle" />
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['post_title11_error']) ? $_SESSION['post_title11_error']: ""; ?></span>
+                            </div>
+
+                            <div class="mb-3">
+                            <label for="blink" style="color: #146c43; font-weight:600">Description:</label>
+                                <input type="text" class="form-control myinput" id="blink" name="text" min="2" />
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['post_text11_error']) ? $_SESSION['post_text11_error']: ""; ?></span>
+                            </div>
+
+                            <div class="mb-3">
+
+                            <label  for="avatar" style="color: #146c43; font-weight:600" >Image:</label>
+                                <input type="file" class="form-control myinput" id="avatar" name="avatar1" />
+                                <!-- error text to show -->
+                                <span style="color:chocolate"><?php echo isset($_SESSION['clerk_img1_error']) ? $_SESSION['clerk_img1_error']: ""; ?></span>
+
+                                
+
+                                <img id="imgs"  src="" alt="myimg" width=20% style="margin-top: 3%;">
+                                
+                            </div>
+
+
+                            <input type="hidden" class="form-control myinput"  name="imglink1"  />
+
+
+
+                            <!------------------------- buttons--------------------------- -->
+                            <div>
+                                <input type="submit" value="Update" name="submit3" class="btn btn-success mystyle2" />
+
+                            </div>
+                        </form>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 
 

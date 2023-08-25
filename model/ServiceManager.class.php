@@ -69,7 +69,23 @@ public function countService(){
 
 
 // update service
+public function updateServiceOne(Service $service){
+    $query1 = $this->db->prepare("UPDATE `service` SET `icon`=?,`title`=?,`text`=? WHERE `id`=?;") ;
+    $query1->execute(array(
+        $service->getIcon(),
+        $service->getTitle(),
+        $service->getText(),
+       
+       
+        $service->getId(),
+         
 
+    ));
+
+    $result1 = $query1->fetchAll();
+    return $result1;
+
+}
 
 
 
