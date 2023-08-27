@@ -643,7 +643,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                             <div class="mb-3">
 
                             <label  for="avatar" style="color: #146c43; font-weight:600" >Image:</label>
-                                <input type="file" class="form-control myinput" id="avatar" name="avatar1" />
+                                <input type="file" class="form-control myinput" id="avatar" name="avatar" />
                                 <!-- error text to show -->
                                 <span style="color:chocolate"><?php echo isset($_SESSION['clerk_img1_error']) ? $_SESSION['clerk_img1_error']: ""; ?></span>
 
