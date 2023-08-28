@@ -438,6 +438,23 @@ class ContactManager extends DbConnector{
 
 
     //update
+    public function updateContactSix(ContactSix $contactsix){
+        $query1 = $this->db->prepare("UPDATE `contactsix` SET `type`=?,`name`=?,`placeholder`=? WHERE `id`=?;") ;
+        $query1->execute(array(
+            
+            $contactsix->getType(),
+            $contactsix->getName(),
+            $contactsix->getPlaceholder(),
+
+            $contactsix->getId(),
+             
+    
+        ));
+    
+        $result1 = $query1->fetchAll();
+        return $result1;
+    
+    }
 
 
 

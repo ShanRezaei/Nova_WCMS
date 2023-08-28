@@ -90,5 +90,25 @@ $(document).ready(function () {
     });
 
 
+    $('#editModalcontactsix').on('shown.bs.modal', function (e) {
+
+        alert("hello");
+         
+
+        var element = $(e.relatedTarget);
+        $(this).find("[name='id']").val(element.data("id"));
+        $(this).find("[name='iconsix']").val(element.data("type"));
+        $(this).find("[name='inputname']").val(element.data("name"));
+        $(this).find("[name='inputnameone']").val(element.data("name"));
+        $(this).find("[name='inputholder']").val(element.data("hold"));
+        
+       
+        
+        
+
+
+    });
+
+
 
 })

@@ -36,6 +36,12 @@ $typesix = $namesix = $placesix = "";
 $isvalidatesix = true;
 $_SESSION['contact_six_type_error'] = $_SESSION['contact_six_name_error'] = $_SESSION['contact_six_place_error'] = "";
 
+// define variables for updaiting section six
+$type6Err = $name6Err = $place6Err = "";
+$type6 = $name6 = $place6 = "";
+$isvalidate6 = true;
+$_SESSION['contact_6_type_error'] = $_SESSION['contact_6_name_error'] = $_SESSION['contact_6_place_error'] = "";
+
 // define variables for section two update
 $texttwoErr = $nametwoErr =  "";
 $texttwo = $nametwo = "";
@@ -694,6 +700,122 @@ if (!empty($action_contact)) {
                 echo "<script>alert('fill out all fields correctly.');</script>";
                 echo "<script>window.location.href='../nova-contact.php';</script>";
             }
+        } else {
+
+            echo "<script>alert('fill out all fields.');</script>";
+            echo "<script>window.location.href='../nova-contact.php';</script>";
+        }
+    } else if ($action_contact == "editsix") {
+        if (!empty($_POST['iconsix']) &&  !empty($_POST['inputname'])  &&  !empty($_POST['inputholder'])) {
+
+            // name validation
+            if (!empty(trim($_POST["inputname"]))) {
+
+                if (ctype_alpha(trim($_POST["inputname"]))) {
+
+                    if (strlen(trim($_POST["inputname"])) >= 4) {
+
+                        //check the uniqness of the name
+
+                        if (trim($_POST["inputname"]) == trim($_POST["inputnameone"])) {
+                            $name6 = trim($_POST["inputname"]);
+                            $name6Err = "";
+                            $isvalidate6 = true;
+                        } else {
+                            //check the uniquness
+                            $name6 = $DbMgcontact->CountNameSix(trim($_POST["inputname"]));
+                            if (isset($name6)) {
+                                $name6Err = "Name should be Unique.";
+                                $_SESSION['contact_6_name_error'] = "Name should be Unique.";
+
+                                $isvalidate6 = false;
+                            } else {
+                                $name6 = trim($_POST["inputname"]);
+                                $name6Err = "";
+                                $isvalidate6 = true;
+                            }
+                        }
+                    } else {
+                        $name6Err = "it should be more than 4 characters.";
+                        $_SESSION['contact_one1_text_error'] = "it should be more than 4 characters.";
+
+                        $isvalidate6 = false;
+                    }
+                } else {
+                    $name6Err = "Enter the alphabet characterfor  name of the input.";
+                    $_SESSION['contact_6_name_error'] = "Enter the alphabet characterfor  name of the input.";
+
+                    $isvalidate6 = false;
+                }
+            } else {
+                $name6Err = "Enter the  name of the input.";
+                $_SESSION['contact_6_name_error'] = "Enter the  name of the input.";
+
+                $isvalidate6 = false;
+            }
+
+
+             // place validation
+             if (!empty(trim($_POST["inputholder"]))) {
+
+                if (strlen(trim($_POST["inputholder"])) >= 4) {
+                    $place6 = trim($_POST["inputholder"]);
+                    $isvalidate6 = true;
+                } else {
+                    $place6Err = "it should be more than 4 characters.";
+                    $_SESSION['contact_6_place_error'] = "it should be more than 4 characters.";
+
+                    $isvalidate6 = false;
+                }
+            } else {
+                $place6Err = "Enter the  placeholder content.";
+                $_SESSION['contact_6_place_error'] = "Enter the placeholdercontent.";
+
+                $isvalidate6= false;
+            }
+
+            //type validation
+
+            if (!empty(trim($_POST["iconsix"]))) {
+                $type6 = trim($_POST["iconsix"]);
+                $isvalidate6 = true;
+            } else {
+                $type6Err = "choose the type.";
+                $_SESSION['contact_6_type_error'] = "choose the type.";
+
+                $isvalidate6 = false;
+            }
+
+
+            
+            // on submit
+
+            if ($isvalidate6=== true  &&  $type6Err == "" && $place6Err == "" && $name6Err == "") {
+
+                // add new content
+
+                $id = $_POST["id"];
+                $contact6 = new ContactSix($id, $type6, $name6, $place6);
+                $update6 = $DbMgcontact->updateContactSix($contact6);
+                if (isset($update6)) {
+
+                    echo "<script>alert('you update content successfully.');</script>";
+                    echo "<script>window.location.href='../nova-contact.php';</script>";
+                } else {
+                    echo "<script>alert('Try again.');</script>";
+                    echo "<script>window.location.href='../nova-contact.php';</script>";
+                }
+            } else {
+
+                echo "<script>alert('fill out all fields correctly based on the errors.');</script>";
+                echo "<script>window.location.href='../nova-contact.php';</script>";
+            }
+            
+
+
+
+
+
         } else {
 
             echo "<script>alert('fill out all fields.');</script>";

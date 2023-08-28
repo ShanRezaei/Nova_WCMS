@@ -1155,7 +1155,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                             <div class="mb-3">
 
                                 <!-- add dropdowns -->
-                                <label class="form-label select-label">Input Type:</label>
+                                <label  for="lname"style="color: #146c43; font-weight:600" >Input Type:</label>
                                 <select id="cars" name="iconsix" class="bi form-select">
                                     <option value=""></option>
                                     <option value="text">Text</option>
@@ -1164,20 +1164,23 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
                                     <option value="number">Number</option>
                                 </select>
                                 <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['contact_six_type_error']) ? $_SESSION['contact_six_type_error'] : ""; ?></span>
+                                <span style="color:chocolate"><?php echo isset($_SESSION['contact_6_type_error']) ? $_SESSION['contact_6_type_error'] : ""; ?></span>
                             </div>
 
                             <div class="mb-3">
 
-                                <input type="text" class="form-control myinput" name="inputname" placeholder="Your Input name" min="2" />
+                            <label  for="lname"style="color: #146c43; font-weight:600" >Input name:</label>
+                                <input type="text" class="form-control myinput" name="inputname"  min="2" />
+                                <input type="hidden" class="form-control myinput" name="inputnameone"  min="2" />
                                 <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['contact_six_name_error'] ) ? $_SESSION['contact_six_name_error']  : ""; ?></span>
+                                <span style="color:chocolate"><?php echo isset($_SESSION['contact_6_name_error'] ) ? $_SESSION['contact_6_name_error']  : ""; ?></span>
                             </div>
                             <div class="mb-3">
+                            <label  for="lname"style="color: #146c43; font-weight:600" >Input Placeholder:</label>
 
-                                <input type="text" class="form-control myinput" name="inputholder" id="lname" placeholder="PlaceHolder Content" min="2" />
+                                <input type="text" class="form-control myinput" name="inputholder" id="lname"  min="2" />
                                 <!-- error text to show -->
-                                <span style="color:chocolate"><?php echo isset($_SESSION['contact_six_place_error']) ? $_SESSION['contact_six_place_error'] : ""; ?></span>
+                                <span style="color:chocolate"><?php echo isset($_SESSION['contact_6_place_error']) ? $_SESSION['contact_6_place_error'] : ""; ?></span>
                             </div>
 
                             
