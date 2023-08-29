@@ -233,7 +233,7 @@ $DbMnghome = new HomeManager();
         <?php foreach ($DbMnghome->getAllHomeThree()  as $allth) : ?>
           <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
             <div class="post-box">
-              <div class="post-img"><img src="<?= $allth->getImg() ?>" class="img-fluid" alt=""></div>
+              <div class="post-img" ><img src="<?= $allth->getImg() ?>" class="img-fluid" alt=""    ></div>
               <div class="meta">
                 <!-- <span class="post-date">Tue, December 12</span> -->
                 <span class="post-author">| <?= $allth->getFirstName() ?> <?= $allth->getLastName() ?></span>

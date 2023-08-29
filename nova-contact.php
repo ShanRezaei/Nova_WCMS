@@ -513,6 +513,7 @@ if (isset($_SESSION["login-access"]) &&  $_SESSION["login-access"] == "1") {
 
                             </table>
                             <!-- add modal by two tags -->
+                            <p style="color:blue">* name of the input should be unique and only alphabet charachter.</p>
                             <a href="#" class="btn btn-primary" id="addp" data-bs-toggle="modal" data-bs-target="#addModalcontactsix" style="margin-bottom: 3%;">Add New Input</a> 
 
                         </div>

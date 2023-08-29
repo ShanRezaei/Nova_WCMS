@@ -121,6 +121,7 @@ if (!empty($action_p)) {
 
                             //create content object
                             $newimgaddress = "assets/img/portfolio/" . $myname . $count . "." . $image_format;
+                            $id="";
                             $product = new Portfolio($id, $newimgaddress, $myname, $mytext);
                             $addproduct = $DbMgrp->addNewProduct($product);
 

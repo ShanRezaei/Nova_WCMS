@@ -306,6 +306,7 @@ if (!empty($action_s)) {
 
                             //create content object
                             $newimgaddress = "assets/img/" . "cards-" .  $countcard1 . "." . $image_format;
+                            $id="";
                             $servicec = new ServiceCard($id, $newimgaddress, $titlecard, $textcard);
                             $addservicec = $DbMgrservicecard->addNewServiceCard($servicec);
 

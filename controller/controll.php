@@ -192,11 +192,14 @@ switch ($action) {
                 $_SESSION['mycerror'] = $repeatErr;
             }
 
+                     //on submit
 
             if ($isvalidate === true  &&  $repeatErr == "" && $emailErr == "" && $cpassErr == "" && $passErr == "" && $firstErr == "" && $lastErr == "" && $levelErr == "") {
 
 
                 // check for email uniqueness
+                
+
                 $emailrow = $DbMgr->getUserByEmail($myemail);
                 if (isset($emailrow)) {
                     echo "<script>alert('this user with this email already registered.Try with different email!');</script>";
@@ -204,12 +207,14 @@ switch ($action) {
                    
                 } else {
                     //create user object
+                    $id="";
+                    $stat="";
                     $user = new user($id, $myfirst, $mylast,  $myemail,  $mypass, $mylevel, $stat);
                     $adduser = $DbMgr->addUser($user);
                     if (isset($adduser)) {
 
-                        echo "<script>alert('you registered successfully, log in now.');</script>";
-                        echo "<script>window.location.href='../login.php';</script>";
+                        echo "<script>alert('you registered new user successfully.');</script>";
+                        echo "<script>window.location.href='../register.php';</script>";
 
                     }else{
                         echo "<script>alert('problem in registration.try again.');</script>";

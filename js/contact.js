@@ -92,7 +92,7 @@ $(document).ready(function () {
 
     $('#editModalcontactsix').on('shown.bs.modal', function (e) {
 
-        alert("hello");
+       // alert("hello");
          
 
         var element = $(e.relatedTarget);
